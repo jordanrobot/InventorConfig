@@ -7,10 +7,10 @@ You can find an example config file [here](https://github.com/jordanrobot/config
 
 ### To json or not to json
 
-A json file may not be the best method for configuration, but I was trying to avoid hard-coding the options into the main logic. These are some thoughts on sing json files...
+A json file may not be the best method for configuration, but I was trying to avoid hard-coding the options into the main logic. These are some thoughts on using json files...
 
 - Simple for anyone to configure, you don't need to edit the code
-- You can make multiple json config files with different configs, perhaps we add a file selector into the routine?
+- You can make multiple json config files with different configs, perhaps I add a gui file selector into the routine?
 - where would these json files live?
     - Right next to the rule/application/add-in? 
     - Network location or locally?
