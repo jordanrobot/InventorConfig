@@ -1,0 +1,20 @@
+{   "ConfigName" : "This is the Config Name",
+    "UserName" : "JORDAN",
+    "DefaultVBAProjectFileFullFilename" : "%PUBLICDOCUMENTS%/Autodesk/Inventor %RELEASE%/Macros/Default.ivb",
+    "TemplatesPath" : "%PUBLICDOCUMENTS%/Autodesk/Inventor %RELEASE%/Templates/%LANGUAGE%/",
+    "DesignDataPath" : "%PUBLICDOCUMENTS%/Autodesk/Inventor %RELEASE%/Design Data/",
+    "PresetsPath" : "%USERPROFILE%/AppData/Roaming/Autodesk/Inventor %RELEASE%/Presets/",
+    "SymbolLibraryPath" : "Z:/Inventor/Symbol Library/",
+    "SheetMetalPunchesRootPath" : "Z:/Inventor/Punches",
+    "iFeatureOptionsRootPath" : "%PUBLICDOCUMENTS%/Autodesk/Inventor %RELEASE%/Catalog/",
+    "CCAccess" : "Desktop",
+    "CCLibraryPath" : "Z:/Inventor/Content Center Libraries/2021/",
+    "CCCustomFamilyAsStandard" : true,
+    "CCRefreshOutOfDateStandardParts" : true,
+    "SectionAllParts" : true,
+    "DefaultDrawingFileType" : "idw",
+    "ExternalRuleDirectories" : [
+        "directory",
+        "directory2"
+     ]
+    }
