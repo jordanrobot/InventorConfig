@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Reflection;
 
 namespace cs_src
 {
@@ -10,6 +12,7 @@ namespace cs_src
 
             // I could make all the methods static but it's easier to do other things later.
             var argWorker = new ArgumentWorker(args);
+            var jsonWorker = new JsonWorker(Assembly.GetExecutingAssembly());
             
             if (argWorker.CheckForPathArg())
             {
@@ -27,13 +30,21 @@ namespace cs_src
                 // Please rerun with /path and the path to the JSON file.
                 //
                 // Press enter to exit...
+
+                var jsonPathFromArgs = argWorker.GetPathFromArguments(); 
                 
+                if (File.Exists(jsonPathFromArgs))
+                {
+                    jsonWorker.UpdateInventorFromJson(jsonPathFromArgs);
+                }
             } 
-            // else if (FoundJson())
-            // {
-            //     // Since it's an elseif, args will override looking for json locally
-            //     
-            // }
+            else if (jsonWorker.CheckForLocalJsonFile())
+            {
+                // Since it's an elseif, args will override looking for json locally
+                var existingLocalJsonFilePath = jsonWorker.GetLocalJsonFilePath(); 
+                
+                jsonWorker.UpdateInventorFromJson(existingLocalJsonFilePath);
+            }
             else
             {
                 argWorker.PromptUser();

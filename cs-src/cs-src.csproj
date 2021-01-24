@@ -40,6 +40,7 @@
     <ItemGroup>
         <Compile Include="ArgumentWorker.cs" />
         <Compile Include="Configuration.cs" />
+        <Compile Include="JsonWorker.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>

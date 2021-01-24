@@ -4,5 +4,7 @@ namespace cs_src
     {
         // This should be a json file as well, but if you set it up like this, it's easy to convert later
         public static string PathArgString => "/path";
+        
+        public static string LocalJsonFilename => "json_local_config.json";
     }
 }
