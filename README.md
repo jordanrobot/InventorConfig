@@ -1,6 +1,6 @@
 ## Config Loader
 
-This is a simple config tool for Autodesk Inventor. Automate and standardize Inventor options across users' computers. 
+This is a simple config tool for Autodesk Inventor to standardize Inventor options across users' computers. 
 
 It works by editing a select subset of Inventor Application Options from a json configuration file. The thought is that the administrator can configure a json file and deploy it with this tool to the users.  They run the tool and their options are set to company standards.
 You can find an example config file [here](https://github.com/jordanrobot/config-loader/blob/master/src/config.json).
