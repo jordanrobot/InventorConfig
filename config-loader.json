@@ -1,5 +1,5 @@
-{   "ConfigName" : "This is the Config Name",
-    "UserName" : "JORDAN",
+{   "ConfigName" : "Default Config",
+    "UserName" : "",
     "DefaultVBAProjectFileFullFilename" : "%PUBLICDOCUMENTS%/Autodesk/Inventor %RELEASE%/Macros/Default.ivb",
     "TemplatesPath" : "%PUBLICDOCUMENTS%/Autodesk/Inventor %RELEASE%/Templates/%LANGUAGE%/",
     "DesignDataPath" : "%PUBLICDOCUMENTS%/Autodesk/Inventor %RELEASE%/Design Data/",
