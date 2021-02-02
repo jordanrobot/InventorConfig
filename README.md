@@ -6,23 +6,33 @@ It works by editing a select subset of Inventor Application Options from a json 
 
 ### Console application
 
+USAGE:
+
+Load a json configuration file into Inventor:
+  config-loader --path config-loader.json
+
+Write a json configuration file from Inventor (NOT YET IMPLEMENTED):
+  config-loader --output config-loader.json
+
+Verify a json configuration file is formatted correctly:
+  config-loader --path config-loader.json --test
+
 The console application will have the following options (not all implemented yet):
 
-    --default : use the default "config-loader.json" in the application's current directory
-    --dry : dry run of the options?  Would verify that the configuration is valid without changing any inventor options. TBD
-    --help : displays a help screen
-    --output : create a new json config file based on the current Inventor options
-    --path : specifiy the json configuration file, may be absolute or relative to the current working directory
-    --version : shows the version of the application
+    --path       Specify a filename of a configuration json file to load into Inventor.  May be a relative or absolute path.
+    --test       Test json configuration file for valid format - Inventor settings will not be modified.
+    --output     FUTURE FEATURE: Specify a destination filename; writes a json file of the existing Inventor application configuration.  May be a relative or absolute path.
+    --help       Display this help screen.
+    --version    Display version information.
 
 ### Json configuration
 
 - This tool uses a json file to specify the configuration to load.
 - Empty value strings will be ignored when the config is loaded; that particular setting will not be touched in Inventor.
-- Simple for anyone to configure.
+- Simple to edit and push to users machines.
 - You can create a json configuration from an existing Inventor install.
-- You can make multiple json config files with different configurations.
-- The current json configuration is as follows:
+- You can create multiple json config files with different configurations.
+- The current json configuration spec is as follows:
 
 ```json
 {   "ConfigName" : "Default Config",
@@ -46,3 +56,8 @@ The console application will have the following options (not all implemented yet
      ]
     }
 ```
+
+Where:
+
+- CCAccess = ```Desktop``` or ```Vault```
+- DefaultDrawingFileType = ```idw``` or ```dwg```
