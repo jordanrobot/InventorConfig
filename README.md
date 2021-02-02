@@ -6,6 +6,10 @@ It works by editing a select subset of Inventor Application Options from a json 
 
 ## How to Use
 
+Load a default json configuration file into Inventor (file located in current working directory):
+
+    config-loader
+
 Load a json configuration file into Inventor:
 
     config-loader --path your-config.json
