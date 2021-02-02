@@ -10,6 +10,10 @@ namespace ConfigLoaderConsole
             Console.WriteLine("This is a help message... TBD...");
         }
 
+        public static void ShowDryRun()
+        {
+            Console.WriteLine("This is a dry-run; nothing has been changed in Inventor's configuration.");
+        }
         public static void ShowError()
         {
             // Prompt user here

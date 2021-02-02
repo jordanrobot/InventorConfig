@@ -9,6 +9,7 @@ namespace ConfigLoaderConsole
         public bool HelpSwitchExists { get; set; }
         public bool OutputSwitchExists { get; set; }
         public bool VersionSwitchExists { get; set; }
+        public bool DryRunSwitchExists { get; set; }
         public string Path { get; set; }
 
         public ArgumentWorker(string[] args)
@@ -16,6 +17,7 @@ namespace ConfigLoaderConsole
             ParseForHelpSwitch(args);
             ParseForOutputSwitch(args);
             ParseForVersionSwitch(args);
+            ParseForDryRunSwitch(args);
 
             Debug.WriteLine("Number of arguments: " + args.Length);
 
@@ -43,6 +45,16 @@ namespace ConfigLoaderConsole
                 if (string.Equals(argument, "--help", StringComparison.OrdinalIgnoreCase) || string.Equals(argument, "-h", StringComparison.OrdinalIgnoreCase))
                 {
                     HelpSwitchExists = true;
+                }
+            }
+        }
+        private void ParseForDryRunSwitch(string[] args)
+        {
+            foreach (var argument in args)
+            {
+                if (string.Equals(argument, "--dryRun", StringComparison.OrdinalIgnoreCase) || string.Equals(argument, "-r", StringComparison.OrdinalIgnoreCase))
+                {
+                    DryRunSwitchExists = true;
                 }
             }
         }

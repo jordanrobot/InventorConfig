@@ -21,6 +21,13 @@ namespace ConfigLoaderConsole
                 View.ShowVersion();
                 return;
             }
+
+            if (argWorker.DryRunSwitchExists)
+            {
+                View.ShowDryRun();
+                return;
+            }
+
             #endregion Argument Switches
 
             View.ShowBanner();
