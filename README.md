@@ -4,28 +4,39 @@ This is a simple config tool for Autodesk Inventor to standardize Inventor optio
 
 It works by editing a select subset of Inventor Application Options from a json configuration file. The thought is that the administrator can configure a json file and deploy it with this tool to the users; ensuring their Inventor configs match the company standards.
 
-### Console application
-
-USAGE:
+## How to Use
 
 Load a json configuration file into Inventor:
-  config-loader --path config-loader.json
+
+    config-loader --path your-config.json
 
 Write a json configuration file from Inventor (NOT YET IMPLEMENTED):
-  config-loader --output config-loader.json
+
+    config-loader --output your-config.json
 
 Verify a json configuration file is formatted correctly:
-  config-loader --path config-loader.json --test
 
-The console application will have the following options (not all implemented yet):
+    config-loader --path your-config.json --test
 
-    --path       Specify a filename of a configuration json file to load into Inventor.  May be a relative or absolute path.
-    --test       Test json configuration file for valid format - Inventor settings will not be modified.
-    --output     FUTURE FEATURE: Specify a destination filename; writes a json file of the existing Inventor application configuration.  May be a relative or absolute path.
-    --help       Display this help screen.
-    --version    Display version information.
+### Command Line Options
 
-### Json configuration
+<dl>
+  <dt>--path</dt>
+  <dd>Specify a filename of a configuration json file to load into Inventor.  May be a relative or absolute path.</dd>
+  
+  <dt>--test</dt>
+  <dd>Test json configuration file for valid format - Inventor settings will not be modified.</dd>
+  
+  <dt>--output</dt>
+  <dd>FUTURE FEATURE: Specify a destination filename; writes a json file of the existing Inventor application configuration.  May be a relative or absolute path.</dd>
+  
+  <dt>--help</dt>
+  <dd>Display this help screen.</dd>
+  
+  <dt>--version</dt>
+  <dd>Display version information.</dd>
+
+## Json Configuration File
 
 - This tool uses a json file to specify the configuration to load.
 - Empty value strings will be ignored when the config is loaded; that particular setting will not be touched in Inventor.
