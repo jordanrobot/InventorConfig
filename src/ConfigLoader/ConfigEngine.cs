@@ -5,7 +5,6 @@ using System.Runtime.InteropServices;
 
 namespace ConfigLoader
 {
-
     public class ConfigEngine
     {
         private string _configRaw;
@@ -13,18 +12,18 @@ namespace ConfigLoader
         private Configuration Config { get; set; }
         private Inventor.Application App { get; set; }
 
-        public ConfigEngine(string _configPath)
+        public ConfigEngine(string _configPath, bool test = false)
         {
             _configRaw = GetFileContents(_configPath);
             Config = DeserializeConfiguration();
+
+            if (test)
+                return;
+
             App = GetInventorInstance();
-
             Config.apply(App);
-
             CloseApp();
-
         }
-
 
         private string GetFileContents(string _configPath)
         {
@@ -57,7 +56,7 @@ namespace ConfigLoader
                 //return (Inventor.Application)Marshal.GetActiveObject("Inventor.Application");
             }
             catch { }
-            
+
             try
             {
                 _closeApp = true;

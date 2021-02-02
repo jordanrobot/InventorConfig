@@ -11,34 +11,33 @@ namespace ConfigLoaderConsole
         private readonly string _currentDirectory = System.Environment.CurrentDirectory;
         private readonly string _executableLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-        public ConfigFile(ArgumentWorker argWorker)
+        public ConfigFile(string path)
         {
-            if (argWorker.PathSwitchExists)
+            if (string.IsNullOrEmpty(path))
             {
-                var _filePath = argWorker.Path;
+                //try the default file....
+                var _defaultConfigFullPath = Path.Combine(_executableLocation, _defaultConfigFileName);
 
-                if (!Path.IsPathRooted(_filePath))
+                if (File.Exists(_defaultConfigFullPath))
                 {
-                    _filePath = Path.Combine(_currentDirectory, _filePath);
-                }
-
-                if (File.Exists(_filePath))
-                {
-                    FilePath = _filePath;
+                    FilePath = _defaultConfigFullPath;
                     return;
                 }
-
-                FilePath = null;
-                return;
             }
 
-            var _defaultConfigFullPath = Path.Combine(_executableLocation, _defaultConfigFileName);
+            //Is the specified file absolute?
+            if (!Path.IsPathRooted(path))
+                path = Path.Combine(_currentDirectory, path);
 
-            if (File.Exists(_defaultConfigFullPath))
+            if (File.Exists(path))
             {
-                FilePath = _defaultConfigFullPath;
+                FilePath = path;
                 return;
             }
+
+            FilePath = null;
+            return;
         }
+
     }
 }

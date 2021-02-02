@@ -3,6 +3,7 @@ using Inventor;
 
 namespace ConfigLoader
 {
+    //TODO: Set the ExternalRuleDirectories
     public class Configuration
     {
         public string ConfigName;
