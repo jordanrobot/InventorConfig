@@ -89,7 +89,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>$(ILMergeConsolePath) /target:exe /allowDup /out:$(OutDir)config-loader.exe $(OutDir)ConfigLoaderConsole.exe $(OutDir)ConfigLoader.dll $(OutDir)CommandLine.dll</PostBuildEvent>
+    <PostBuildEvent>$(ILMergeConsolePath) /target:exe /allowDup /out:$(OutDir)config-loader.exe $(OutDir)ConfigLoaderConsole.exe $(OutDir)ConfigLoader.dll $(OutDir)CommandLine.dll $(OutDir)Newtonsoft.Json.dll</PostBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
