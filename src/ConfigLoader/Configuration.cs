@@ -26,36 +26,34 @@ namespace ConfigLoader
 
         public void apply(Application application)
         {
-
             app = application;
 
-            SetStringOption(UserName, app.GeneralOptions.UserName);
-            SetStringOption(DefaultVBAProjectFileFullFilename, app.FileOptions.DefaultVBAProjectFileFullFilename);
-            SetStringOption(TemplatesPath, app.FileOptions.TemplatesPath);
-            SetStringOption(DesignDataPath, app.FileOptions.DesignDataPath);
-            SetStringOption(PresetsPath, app.FileOptions.PresetsPath);
-            SetStringOption(SymbolLibraryPath, app.FileOptions.SymbolLibraryPath);
-            SetStringOption(SheetMetalPunchesRootPath, app.iFeatureOptions.SheetMetalPunchesRootPath);
-            SetStringOption(iFeatureOptionsRootPath, app.iFeatureOptions.RootPath);
+            SetStringOption(UserName, s => app.GeneralOptions.UserName = s);
+            SetStringOption(DefaultVBAProjectFileFullFilename, s => app.FileOptions.DefaultVBAProjectFileFullFilename = s);
+            SetStringOption(TemplatesPath, s => app.FileOptions.TemplatesPath = s);
+            SetStringOption(DesignDataPath, s => app.FileOptions.DesignDataPath = s);
+            SetStringOption(PresetsPath, s => app.FileOptions.PresetsPath = s);
+            SetStringOption(SymbolLibraryPath, s => app.FileOptions.SymbolLibraryPath = s);
+            SetStringOption(SheetMetalPunchesRootPath, s => app.iFeatureOptions.SheetMetalPunchesRootPath = s);
+            SetStringOption(iFeatureOptionsRootPath, s => app.iFeatureOptions.RootPath = s);
 
             SetCCAccessOption(CCAccess, CCLibraryPath);
-            SetBoolOption(CCCustomFamilyAsStandard, app.ContentCenterOptions.CustomFamilyAsStandard);
-            SetBoolOption(CCRefreshOutOfDateStandardParts, app.ContentCenterOptions.RefreshOutOfDateStandardParts);
+            SetBoolOption(CCCustomFamilyAsStandard, b => app.ContentCenterOptions.CustomFamilyAsStandard = b);
+            SetBoolOption(CCRefreshOutOfDateStandardParts, b => app.ContentCenterOptions.RefreshOutOfDateStandardParts = b);
 
-            SetBoolOption(SectionAllParts, app.AssemblyOptions.SectionAllParts);
+            SetBoolOption(SectionAllParts, b => app.AssemblyOptions.SectionAllParts = b);
 
-            SetDefaultDrawingOption(DefaultDrawingFileType, app.DrawingOptions.DefaultDrawingFileType);
-
+            SetDefaultDrawingOption(DefaultDrawingFileType, l => app.DrawingOptions.DefaultDrawingFileType = (DefaultDrawingFileTypeEnum)l);
         }
 
-        private void SetStringOption(string prop, object appOption)
+        private void SetStringOption(string prop, Action<string> appOption)
         {
             if (String.IsNullOrEmpty(prop))
                 return;
 
             try
             {
-                appOption = prop;
+                appOption(prop);
             }
             catch
             {
@@ -67,10 +65,8 @@ namespace ConfigLoader
             if (string.IsNullOrEmpty(access))
                 return;
 
-
             switch (access.ToLower())
             {
-
                 case "desktop":
                     if (string.IsNullOrEmpty(path))
                         return;
@@ -84,17 +80,16 @@ namespace ConfigLoader
             }
         }
 
-        private void SetBoolOption(bool prop, object appOption)
+        private void SetBoolOption(bool prop, Action<bool> appOption)
         {
             try
             {
-                appOption = prop;
+                appOption(prop);
             }
             catch { }
-
         }
 
-        private void SetDefaultDrawingOption(string prop, object appOption)
+        private void SetDefaultDrawingOption(string prop, Action<int> appOption)
         {
             if (string.IsNullOrEmpty(prop))
                 return;
@@ -102,11 +97,11 @@ namespace ConfigLoader
             switch (prop.ToLower())
             {
                 case "dwg":
-                    appOption = 69633;
+                    appOption(69633);
                     break;
 
                 case "idw":
-                    appOption = 69634;
+                    appOption(69634);
                     break;
             }
         }
