@@ -32,6 +32,8 @@
   <ItemGroup>
     <Reference Include="Autodesk.Inventor.Interop">
       <HintPath>C:\Program Files\Autodesk\Inventor 2021\Bin\Public Assemblies\Autodesk.Inventor.Interop.dll</HintPath>
+      <Private>true</Private>
+      <EmbedInteropTypes>true</EmbedInteropTypes>
     </Reference>
   </ItemGroup>
 
