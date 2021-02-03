@@ -51,11 +51,9 @@ namespace ConfigLoader
 
         private Inventor.Application GetInventorInstance()
         {
-            try
-            {
-                //return (Inventor.Application)Marshal.GetActiveObject("Inventor.Application");
-            }
-            catch { }
+            var instance = InventorInstance.GetInventorAppReference();
+            if (instance != null)
+                return instance;
 
             try
             {
