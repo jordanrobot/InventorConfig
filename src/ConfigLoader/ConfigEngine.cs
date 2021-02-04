@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using Newtonsoft.Json;
-using System.Runtime.InteropServices;
 
 namespace ConfigLoader
 {

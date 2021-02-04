@@ -1,0 +1,21 @@
+{   "ConfigName" : "External Rule Directories Sample",
+    "UserName" : "",
+    "DefaultVBAProjectFileFullFilename" : "",
+    "TemplatesPath" : "",
+    "DesignDataPath" : "",
+    "PresetsPath" : "",
+    "SymbolLibraryPath" : "",
+    "SheetMetalPunchesRootPath" : "",
+    "iFeatureOptionsRootPath" : "",
+    "CCAccess" : "",
+    "CCLibraryPath" : "",
+    "CCCustomFamilyAsStandard" : false,
+    "CCRefreshOutOfDateStandardParts" : false,
+    "SectionAllParts" : false,
+    "DefaultDrawingFileType" : "",
+    "CleanExternalRuleDirectories" : true,
+    "ExternalRuleDirectories" : [
+        "C:\\",
+        "C:\\Users\\"
+     ]
+    }

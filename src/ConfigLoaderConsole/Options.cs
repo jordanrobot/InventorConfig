@@ -13,8 +13,8 @@ namespace ConfigLoaderConsole
         [Option("test", Required = false, HelpText = "Test json configuration file for valid format - Inventor settings will not be modified.")]
         public bool test { get; set; }
 
-        [Option("output", Required = false, HelpText = "FUTURE FEATURE: Specify a destination filename; writes a json file of the existing Inventor application configuration.  May be a relative or absolute path.")]
-        public string output { get; set; }
+        //[Option("output", Required = false, HelpText = "FUTURE FEATURE: Specify a destination filename; writes a json file of the existing Inventor application configuration.  May be a relative or absolute path.")]
+        //public string output { get; set; }
 
         [Usage(ApplicationAlias = "config-loader")]
         public static IEnumerable<Example> Examples
@@ -23,9 +23,10 @@ namespace ConfigLoaderConsole
             {
                 return new List<Example>()
                 {
-                new Example("Load a json configuration file into Inventor", new Options { path = "config-loader.json" }),
-                new Example("Write a json configuration file from Inventor", new Options { output = "config-loader.json" }),
-                new Example("Verify a json configuration file has no errors", new Options { path = "config-loader.json", test = true })
+                new Example("Load a default json configuration file into Inventor.  The default file name is config-loader.json, and it must reside in the current working directory", new Options { }),
+                new Example("Load a json configuration file into Inventor", new Options { path = "config-file.json" }),
+                //new Example("Write a json configuration file from Inventor", new Options { output = "config-file.json" }),
+                new Example("Verify a json configuration file has no errors", new Options { path = "config-file.json", test = true })
                 };
             }
         }
