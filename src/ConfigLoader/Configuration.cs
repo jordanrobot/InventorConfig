@@ -1,5 +1,8 @@
 ﻿using System;
 using Inventor;
+//using Autodesk.iLogic.Interfaces;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace ConfigLoader
 {
@@ -22,11 +25,15 @@ namespace ConfigLoader
         public bool SectionAllParts;
         public string DefaultDrawingFileType;
         public string[] ExternalRuleDirectories;
+        public bool CleanExternalRuleDirectories;
         private Application app;
+        private dynamic iLogicAuto;
 
         public void apply(Application application)
         {
             app = application;
+            iLogicAuto = GetiLogicAddIn(app);
+
 
             SetStringOption(UserName, s => app.GeneralOptions.UserName = s);
             SetStringOption(DefaultVBAProjectFileFullFilename, s => app.FileOptions.DefaultVBAProjectFileFullFilename = s);
@@ -44,6 +51,10 @@ namespace ConfigLoader
             SetBoolOption(SectionAllParts, b => app.AssemblyOptions.SectionAllParts = b);
 
             SetDefaultDrawingOption(DefaultDrawingFileType, l => app.DrawingOptions.DefaultDrawingFileType = (DefaultDrawingFileTypeEnum)l);
+
+            EmptyExternalRuleDirectories();
+            SetExternalRuleDirectories();
+
         }
 
         private void SetStringOption(string prop, Action<string> appOption)
@@ -105,5 +116,71 @@ namespace ConfigLoader
                     break;
             }
         }
+
+        /// <summary>
+        /// Set the External iLogic Rule directories
+        /// </summary>
+//        internal IiLogicAutomation iLogicAutomation { get; private set; }
+        internal void SetExternalRuleDirectories()
+        {
+            if (ExternalRuleDirectories.Length == 0)
+                return;
+
+            //Add iLogic Directories
+            string[] oldDirectories = iLogicAuto.FileOptions.ExternalRuleDirectories;
+            List<string> newDirectories = oldDirectories.OfType<string>().ToList();
+
+            //if it isn't already in there, add it!
+            foreach (string i in ExternalRuleDirectories)
+            {
+                if (!newDirectories.Contains(i))
+                {
+                    newDirectories.Add(i);
+                }
+            }
+
+            try
+            {
+                if (newDirectories.Count > oldDirectories.Length)
+                {
+                    iLogicAuto.FileOptions.ExternalRuleDirectories = newDirectories.ToArray();
+                }
+
+            }
+            catch (Exception e)
+            {
+                throw new SystemException("An error occurred while updating the External iLogic Rule Directories", e);
+            }
+        }
+
+        private void EmptyExternalRuleDirectories()
+        {
+            if (CleanExternalRuleDirectories)
+            {
+                string[] temp = { };
+                iLogicAuto.FileOptions.ExternalRuleDirectories = temp;
+            }
+        }
+
+        internal object GetiLogicAddIn(Inventor.Application _app)
+        {
+            ApplicationAddIns appAddIns = _app.ApplicationAddIns;
+            ApplicationAddIn addIn = appAddIns.ItemById["{3bdd8d79-2179-4b11-8a5a-257b1c0263ac}"];
+
+            if (addIn == null)
+                throw new SystemException("The iLogic add-in could not be found by ID {3bdd8d79-2179-4b11-8a5a-257b1c0263ac}.");
+
+            try
+            {
+                addIn.Activate();
+                return addIn.Automation;
+            }
+            catch (Exception e)
+            {
+                throw new SystemException("The iLogic add-in could not be accessed.", e);
+            }
+        }
+
+
     }
 }

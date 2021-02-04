@@ -65,6 +65,7 @@ Verify a json configuration file is formatted correctly:
     "CCRefreshOutOfDateStandardParts" : true,
     "SectionAllParts" : true,
     "DefaultDrawingFileType" : "idw",
+    "CleanExternalRuleDirectories" : false,
     "ExternalRuleDirectories" : [
         "directory",
         "directory2"
