@@ -66,8 +66,9 @@ namespace ConfigLoader
             {
                 appOption(prop);
             }
-            catch
+            catch (Exception e)
             {
+                throw new SystemException("The value of the " + nameof(appOption) + " setting in the json configuration file was invalid.", e);
             }
         }
 
@@ -76,18 +77,25 @@ namespace ConfigLoader
             if (string.IsNullOrEmpty(access))
                 return;
 
-            switch (access.ToLower())
+            try
             {
-                case "desktop":
-                    if (string.IsNullOrEmpty(path))
-                        return;
+                switch (access.ToLower())
+                {
+                    case "desktop":
+                        if (string.IsNullOrEmpty(path))
+                            return;
 
-                    app.ContentCenterOptions.SetAccessOption(Inventor.ContentCenterAccessOptionEnum.kInventorDesktopAccess, path);
-                    break;
+                        app.ContentCenterOptions.SetAccessOption(Inventor.ContentCenterAccessOptionEnum.kInventorDesktopAccess, path);
+                        break;
 
-                case "vault":
-                    app.ContentCenterOptions.SetAccessOption(Inventor.ContentCenterAccessOptionEnum.kVaultOrProductstreamServerAccess);
-                    break;
+                    case "vault":
+                        app.ContentCenterOptions.SetAccessOption(Inventor.ContentCenterAccessOptionEnum.kVaultOrProductstreamServerAccess);
+                        break;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new SystemException("The value of the CCLibraryPath setting in the json configuration file was invalid.", e);
             }
         }
 
