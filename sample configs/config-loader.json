@@ -1,0 +1,19 @@
+{   "ConfigName" : "Inventor Default",
+    "UserName" : "",
+    "DefaultVBAProjectFileFullFilename" : "%PUBLICDOCUMENTS%/Autodesk/Inventor %RELEASE%/Macros/Default.ivb",
+    "TemplatesPath" : "%PUBLICDOCUMENTS%/Autodesk/Inventor %RELEASE%/Templates/%LANGUAGE%/",
+    "DesignDataPath" : "%PUBLICDOCUMENTS%\\Autodesk\\Inventor %RELEASE%\\Design Data\\",
+    "PresetsPath" : "%USERPROFILE%\\AppData\\Roaming\\Autodesk\\Inventor %RELEASE%\\Presets\\",
+    "SymbolLibraryPath" : "%PUBLICDOCUMENTS%\\Autodesk\\Inventor %RELEASE%\\Design Data\\Symbol Library\\",
+    "SheetMetalPunchesRootPath" : "%PUBLICDOCUMENTS%\\Autodesk\\Inventor %RELEASE%\\Catalog\\Punches\\",
+    "iFeatureOptionsRootPath" : "%PUBLICDOCUMENTS%\\Autodesk\\Inventor %RELEASE%\\Catalog\\",
+    "CCAccess" : "Desktop",
+    "CCLibraryPath" : "C:\\ProgramData\\Autodesk\\Inventor 2021\\Content Center\\Libraries\\",
+    "CCCustomFamilyAsStandard" : false,
+    "CCRefreshOutOfDateStandardParts" : false,
+    "SectionAllParts" : false,
+    "DefaultDrawingFileType" : "dwg",
+    "CleanExternalRuleDirectories" : true,
+    "ExternalRuleDirectories" : [
+     ]
+    }
