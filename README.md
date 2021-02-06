@@ -2,23 +2,35 @@
 
 This is a simple config tool for Autodesk Inventor to standardize Inventor options across users' computers. 
 
-It works by editing a select subset of Inventor Application Options from a json configuration file. The thought is that the administrator can configure a json file and deploy it with this tool to the users; ensuring their Inventor configs match the company standards.
+It works by editing a select subset of Inventor Application Options from a JSON configuration file. The thought is that the administrator can configure a json file and deploy it with this tool to the users; ensuring their Inventor configs match the company standards.
 
-## How to Use
+## How to Run
 
-Load a default json configuration file (```config-laoder.json```) into Inventor.  This file should be located in current working directory:
+1. Download the binary from the Releases page, or download and build from source.
+2. Modify a config-loader.json file, and place it in the same directory.
+
+There are three options after this:
+3. Double-click the config-loader.exe file to run in place,
+4. Run in a command line with ```./config-loader.exe``` with the various options shown below, or
+5. Copy the config-loader.exe file into a directory in your PATH.  Then run from a command line with the command ```config-loader```.
+
+## Detailed Usage
+
+The basic usage will let you load a default json configuration file into Inventor.  The default configuration file needs to be named ```config-loader.json```; this file should be located in current working directory (if using the command line).  To load the configuration using the command line, type the following command at a command line prompt (powershell, cmd, etc).
 
     config-loader
+ 
+You can also double-click the config-loader.exe (if a ```config-loadeer.json``` file is present in the same directory).
 
-Load a json configuration file into Inventor:
+To load a user-supplied JSON configuration file into Inventor (say the config file is called ```your-config.json```), issue the command as shown:
 
     config-loader --path your-config.json
 
-Write a json configuration file from Inventor (NOT YET IMPLEMENTED):
+Write a JSON configuration file from Inventor (NOT YET IMPLEMENTED):
 
     config-loader --output your-config.json
 
-Verify a json configuration file is formatted correctly:
+To verify a JSON configuration file's syntax is formatted correctly, issue the following command:
 
     config-loader --path your-config.json --test
 
@@ -42,12 +54,12 @@ Verify a json configuration file is formatted correctly:
 
 ## Json Configuration File
 
-- This tool uses a json file to specify the configuration to load.
+- This tool uses a JSON file to specify the configuration to load.
 - Empty value strings will be ignored when the config is loaded; that particular setting will not be touched in Inventor.
 - Simple to edit and push to users machines.
-- You can create a json configuration from an existing Inventor install.
-- You can create multiple json config files with different configurations.
-- The current json configuration spec is as follows:
+- You can create a JSON configuration from an existing Inventor install.
+- You can create multiple JSON config files with different configurations.
+- The current JSON configuration spec is as follows:
 
 ```json
 {   "ConfigName" : "Default Config",
@@ -77,3 +89,6 @@ Where:
 
 - CCAccess = ```Desktop``` or ```Vault```
 - DefaultDrawingFileType = ```idw``` or ```dwg```
+- CleanExternalRuleDirectories = ```true``` or ```false```
+  - Will remove all existing ExternalRuleDirectories before adding those you list
+- Paths should use either of the following directory seperators: ```/``` or ```\\```.  Using the ```\``` character will throw an error as it is a JSON escape character.
