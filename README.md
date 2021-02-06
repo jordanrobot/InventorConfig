@@ -10,6 +10,7 @@ It works by editing a select subset of Inventor Application Options from a JSON 
 2. Modify a config-loader.json file, and place it in the same directory.
 
 There are three options after this:
+
 3. Double-click the config-loader.exe file to run in place,
 4. Run in a command line with ```./config-loader.exe``` with the various options shown below, or
 5. Copy the config-loader.exe file into a directory in your PATH.  Then run from a command line with the command ```config-loader```.
