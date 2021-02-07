@@ -7,7 +7,7 @@ namespace ConfigLoader
     public class ConfigEngine
     {
         private string _configRaw;
-        private bool _closeApp;
+        private bool _closeInventorAfterCompletion;
         private Configuration Config { get; set; }
         private Inventor.Application App { get; set; }
 
@@ -19,9 +19,10 @@ namespace ConfigLoader
             if (test)
                 return;
 
+            DecideIfWeShouldCloseInventorAfterCompletion();
             App = GetInventorInstance();
             Config.apply(App);
-            CloseApp();
+            CloseInventorIfRequired();
         }
 
         private string GetFileContents(string _configPath)
@@ -50,15 +51,9 @@ namespace ConfigLoader
 
         private Inventor.Application GetInventorInstance()
         {
-            var instance = InventorInstance.GetInventorAppReference();
-            if (instance != null)
-                return instance;
-
             try
             {
-                _closeApp = true;
-                Type appType = Type.GetTypeFromProgID("Inventor.Application");
-                return (Inventor.Application)Activator.CreateInstance(appType);
+                return InventorInstance.GetInventorAppReference();
             }
             catch (Exception e)
             {
@@ -66,9 +61,15 @@ namespace ConfigLoader
             }
         }
 
-        private void CloseApp()
+        private void DecideIfWeShouldCloseInventorAfterCompletion()
         {
-            if (_closeApp)
+            if (InventorInstance.NumberOfRunningInventorInstances() == 0)
+            { _closeInventorAfterCompletion = true; }
+        }
+
+        private void CloseInventorIfRequired()
+        {
+            if (_closeInventorAfterCompletion)
             {
                 App.Quit();
                 GC.WaitForPendingFinalizers();

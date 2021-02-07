@@ -9,7 +9,7 @@ using Inventor;
 namespace ConfigLoader
 {
     //var invApp = InventorInstance.GetInventorAppReference();
-    static class InventorInstance
+    public static class InventorInstance
     {
         public static Inventor.Application GetInventorAppReference(bool forceNewInstance = false)
         {
@@ -17,7 +17,7 @@ namespace ConfigLoader
 
             if ((forceNewInstance) || (NumberOfRunningInventorInstances() == 0))
             {
-                //returnInventorReference = MakeNewInventorInstance();
+                returnInventorReference = MakeNewInventorInstance();
                 return null;
             }
 

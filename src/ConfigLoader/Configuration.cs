@@ -6,7 +6,6 @@ using System.Collections.Generic;
 
 namespace ConfigLoader
 {
-    //TODO: Set the ExternalRuleDirectories
     public class Configuration
     {
         public string ConfigName;
