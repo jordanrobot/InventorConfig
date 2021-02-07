@@ -21,7 +21,7 @@ namespace ConfigLoader
 
             DecideIfWeShouldCloseInventorAfterCompletion();
             App = GetInventorInstance();
-            Config.apply(App);
+            Config.LoadConfigurationIntoInventor(App);
             CloseInventorIfRequired();
         }
 

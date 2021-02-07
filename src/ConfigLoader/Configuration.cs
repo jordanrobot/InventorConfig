@@ -28,7 +28,7 @@ namespace ConfigLoader
         private Application app;
         private dynamic iLogicAuto;
 
-        public void apply(Application application)
+        public void LoadConfigurationIntoInventor(Application application)
         {
             app = application;
             iLogicAuto = GetiLogicAddIn(app);
