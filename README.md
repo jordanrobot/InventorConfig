@@ -45,7 +45,7 @@ To verify a JSON configuration file's syntax is formatted correctly, issue the f
   <dd>Test json configuration file for valid format - Inventor settings will not be modified.</dd>
   
   <dt>--output</dt>
-  <dd>FUTURE FEATURE: Specify a destination filename; writes a json file of the existing Inventor application configuration.  May be a relative or absolute path.</dd>
+  <dd>Specify a destination filename; writes a json file of the existing Inventor application configuration.  May be a relative or absolute path.</dd>
   
   <dt>--help</dt>
   <dd>Display this help screen.</dd>
