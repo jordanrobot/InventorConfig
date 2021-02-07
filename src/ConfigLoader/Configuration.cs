@@ -23,8 +23,9 @@ namespace ConfigLoader
         public bool CCRefreshOutOfDateStandardParts;
         public bool SectionAllParts;
         public string DefaultDrawingFileType;
-        public string[] ExternalRuleDirectories;
         public bool CleanExternalRuleDirectories;
+        public string[] ExternalRuleDirectories;
+
 
         [NonSerialized()]
         private Application app;
