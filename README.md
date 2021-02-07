@@ -21,13 +21,13 @@ The basic usage will let you load a default json configuration file into Invento
 
     config-loader
  
-You can also double-click the config-loader.exe (if a ```config-loadeer.json``` file is present in the same directory).
+You can also double-click the config-loader.exe (if a ```config-loader.json``` file is present in the same directory).
 
 To load a user-supplied JSON configuration file into Inventor (say the config file is called ```your-config.json```), issue the command as shown:
 
     config-loader --path your-config.json
 
-Write a JSON configuration file from Inventor (NOT YET IMPLEMENTED):
+To create a JSON configuration file from Inventor's current options, issue the following command:
 
     config-loader --output your-config.json
 
