@@ -15,9 +15,23 @@ namespace ConfigLoaderConsole
 
         private static void ConsoleStart(Options options)
         {
-            ShowBanner();
+            if (string.IsNullOrEmpty(options.output))
+            {
+                LoadConfig(options);
+            }
+            else
+            {
+                WriteConfig(options);
+            }
+        }
 
-            ConfigFile configFile = new ConfigFile(options.path);
+        private static void WriteConfig(Options options)
+        {
+            ShowReadBanner();
+
+            ConfigFile configFile = new ConfigFile();
+            configFile.GetWriteConfigFile(options.output);
+
             if (configFile.FilePath is null)
             {
                 ShowNoValidConfigFileError();
@@ -27,12 +41,40 @@ namespace ConfigLoaderConsole
             //modify the Inventor config
             try
             {
-                ConfigEngine configEngine = new ConfigEngine(configFile.FilePath, options.test);
+                ConfigEngine configEngine = new ConfigEngine();
+                configEngine.WriteConfig(configFile.FilePath);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                //throw new SystemException(e.Message, e);
+            }
+        }
+
+        private static void LoadConfig(Options options)
+        {
+            ShowLoadBanner();
+
+            ConfigFile configFile = new ConfigFile();
+            configFile.GetLoadConfigFile(options.path);
+
+            if (configFile.FilePath is null)
+            {
+                ShowNoValidConfigFileError();
+                return;
+            }
+
+            //modify the Inventor config
+            try
+            {
+                ConfigEngine configEngine = new ConfigEngine();
+                configEngine.LoadConfig(configFile.FilePath, options.test);
 
                 if (options.test)
                 {
                     ShowTest();
-                } else
+                }
+                else
                 {
                     ShowComplete();
                 }
@@ -62,9 +104,14 @@ namespace ConfigLoaderConsole
             Console.WriteLine("Could not find a valid json config file.  Exiting.");
         }
 
-        private static void ShowBanner()
+        private static void ShowLoadBanner()
         {
             Console.WriteLine("Attempting to edit your Autodesk Inventor configuration.  Please stand by...");
+        }
+
+        private static void ShowReadBanner()
+        {
+            Console.WriteLine("Attempting to read your Autodesk Inventor configuration.  Please stand by...");
         }
         #endregion Screens
 

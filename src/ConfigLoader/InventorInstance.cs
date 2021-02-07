@@ -9,16 +9,16 @@ using Inventor;
 namespace ConfigLoader
 {
     //var invApp = InventorInstance.GetInventorAppReference();
-    public static class InventorInstance
+    static class InventorInstance
     {
-        public static Inventor.Application GetInventorAppReference(bool forceNewInstance = false)
+        public static Application GetInventorAppReference(bool forceNewInstance = false)
         {
-            Inventor.Application returnInventorReference;
+            Application returnInventorReference;
 
             if ((forceNewInstance) || (NumberOfRunningInventorInstances() == 0))
             {
                 returnInventorReference = MakeNewInventorInstance();
-                return null;
+                return returnInventorReference;
             }
 
             // Warn user if we can't attach because too many instances found
@@ -28,7 +28,7 @@ namespace ConfigLoader
             }
 
             // Otherwise:
-            returnInventorReference = (Inventor.Application)MarshalForCore.GetActiveObject("Inventor.Application");
+            returnInventorReference = (Application)MarshalForCore.GetActiveObject("Inventor.Application");
 
             return returnInventorReference;
         }

@@ -11,7 +11,7 @@ namespace ConfigLoader
         private Configuration Config { get; set; }
         private Inventor.Application App { get; set; }
 
-        public ConfigEngine(string _configPath, bool test = false)
+        public void LoadConfig(string _configPath, bool test = false)
         {
             _configRaw = GetFileContents(_configPath);
             Config = DeserializeConfiguration();
@@ -22,6 +22,18 @@ namespace ConfigLoader
             DecideIfWeShouldCloseInventorAfterCompletion();
             App = GetInventorInstance();
             Config.LoadConfigurationIntoInventor(App);
+            CloseInventorIfRequired();
+        }
+
+        public void WriteConfig(string _configPath)
+        {
+            DecideIfWeShouldCloseInventorAfterCompletion();
+            App = GetInventorInstance();
+
+            Config = new Configuration();
+            Config.GetConfigurationFromInventor(App);
+            SerializeConfiguration(Config, _configPath);
+
             CloseInventorIfRequired();
         }
 
@@ -53,7 +65,8 @@ namespace ConfigLoader
         {
             try
             {
-                return InventorInstance.GetInventorAppReference();
+                var i = InventorInstance.GetInventorAppReference();
+                return i;
             }
             catch (Exception e)
             {
@@ -74,6 +87,18 @@ namespace ConfigLoader
                 App.Quit();
                 GC.WaitForPendingFinalizers();
             }
+        }
+
+
+        private void SerializeConfiguration(Configuration config, string outputFile)
+        {
+            JsonSerializer serializer = new JsonSerializer();
+            serializer.NullValueHandling = NullValueHandling.Ignore;
+
+            StreamWriter sw = new StreamWriter(outputFile);
+            JsonWriter writer = new JsonTextWriter(sw);
+            serializer.Serialize(writer, config);
+            writer.Close();
         }
     }
 }

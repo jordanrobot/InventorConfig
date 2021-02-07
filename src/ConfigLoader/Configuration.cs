@@ -1,11 +1,11 @@
 ﻿using System;
 using Inventor;
-//using Autodesk.iLogic.Interfaces;
 using System.Linq;
 using System.Collections.Generic;
 
 namespace ConfigLoader
 {
+    [Serializable()]
     public class Configuration
     {
         public string ConfigName;
@@ -25,14 +25,16 @@ namespace ConfigLoader
         public string DefaultDrawingFileType;
         public string[] ExternalRuleDirectories;
         public bool CleanExternalRuleDirectories;
+
+        [NonSerialized()]
         private Application app;
+        [NonSerialized()]
         private dynamic iLogicAuto;
 
         public void LoadConfigurationIntoInventor(Application application)
         {
             app = application;
             iLogicAuto = GetiLogicAddIn(app);
-
 
             SetStringOption(UserName, s => app.GeneralOptions.UserName = s);
             SetStringOption(DefaultVBAProjectFileFullFilename, s => app.FileOptions.DefaultVBAProjectFileFullFilename = s);
@@ -53,7 +55,31 @@ namespace ConfigLoader
 
             EmptyExternalRuleDirectories();
             SetExternalRuleDirectories();
+        }
 
+        public void GetConfigurationFromInventor(Application application)
+        {
+            app = application;
+            iLogicAuto = GetiLogicAddIn(app);
+
+            UserName = app.GeneralOptions.UserName;
+            DefaultVBAProjectFileFullFilename = app.FileOptions.DefaultVBAProjectFileFullFilename;
+            TemplatesPath = app.FileOptions.TemplatesPath;
+            DesignDataPath = app.FileOptions.DesignDataPath;
+            PresetsPath = app.FileOptions.PresetsPath;
+            SymbolLibraryPath = app.FileOptions.SymbolLibraryPath;
+            SheetMetalPunchesRootPath = app.iFeatureOptions.SheetMetalPunchesRootPath;
+            iFeatureOptionsRootPath = app.iFeatureOptions.RootPath;
+
+            GetCCAccessOption();
+   
+            CCCustomFamilyAsStandard = app.ContentCenterOptions.CustomFamilyAsStandard;
+            CCRefreshOutOfDateStandardParts = app.ContentCenterOptions.RefreshOutOfDateStandardParts;
+            SectionAllParts = app.AssemblyOptions.SectionAllParts;
+
+            GetDefaultDrawingOption();
+            CleanExternalRuleDirectories = false;
+            GetExternalRuleDirectories();
         }
 
         private void SetStringOption(string prop, Action<string> appOption)
@@ -98,6 +124,23 @@ namespace ConfigLoader
             }
         }
 
+        private void GetCCAccessOption()
+        {
+            Inventor.ContentCenterAccessOptionEnum i;
+            app.ContentCenterOptions.GetAccessOption(out i, out CCLibraryPath);
+            switch (i)
+            {
+                case ContentCenterAccessOptionEnum.kInventorDesktopAccess:
+                    CCAccess = "desktop";
+                    break;
+                case ContentCenterAccessOptionEnum.kVaultOrProductstreamServerAccess:
+                    CCAccess = "vault";
+                    break;
+            }
+
+            return;
+        }
+
         private void SetBoolOption(bool prop, Action<bool> appOption)
         {
             try
@@ -124,10 +167,22 @@ namespace ConfigLoader
             }
         }
 
-        /// <summary>
-        /// Set the External iLogic Rule directories
-        /// </summary>
-//        internal IiLogicAutomation iLogicAutomation { get; private set; }
+        private void GetDefaultDrawingOption()
+        {
+            DefaultDrawingFileTypeEnum i = app.DrawingOptions.DefaultDrawingFileType;
+
+            switch (i)
+            {
+                case DefaultDrawingFileTypeEnum.kDWGDefaultDrawingFileType:
+                    DefaultDrawingFileType = "dwg";
+                    break;
+
+                case DefaultDrawingFileTypeEnum.kIDWDefaultDrawingFileType:
+                    DefaultDrawingFileType = "idw";
+                    break;
+            }
+        }
+
         internal void SetExternalRuleDirectories()
         {
             if (ExternalRuleDirectories.Length == 0)
@@ -152,12 +207,17 @@ namespace ConfigLoader
                 {
                     iLogicAuto.FileOptions.ExternalRuleDirectories = newDirectories.ToArray();
                 }
-
             }
             catch (Exception e)
             {
                 throw new SystemException("An error occurred while updating the External iLogic Rule Directories", e);
             }
+        }
+
+        internal void GetExternalRuleDirectories()
+        {
+            string[] existingDirectories = iLogicAuto.FileOptions.ExternalRuleDirectories;
+            ExternalRuleDirectories = existingDirectories;
         }
 
         private void EmptyExternalRuleDirectories()
@@ -187,7 +247,5 @@ namespace ConfigLoader
                 throw new SystemException("The iLogic add-in could not be accessed.", e);
             }
         }
-
-
     }
 }
