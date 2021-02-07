@@ -53,14 +53,21 @@ To verify a JSON configuration file's syntax is formatted correctly, issue the f
   <dt>--version</dt>
   <dd>Display version information.</dd>
 
-## Json Configuration File
+## Json Configuration Spec
 
 - This tool uses a JSON file to specify the configuration to load.
 - Empty value strings will be ignored when the config is loaded; that particular setting will not be touched in Inventor.
-- Simple to edit and push to users machines.
-- You can create a JSON configuration from an existing Inventor install.
-- You can create multiple JSON config files with different configurations.
-- The current JSON configuration spec is as follows:
+- Simple to edit.
+- You can create a JSON configuration from an existing Inventor install using the --output option.
+- You can create multiple JSON config files, each with a different configuration.
+- Paths should use either of the following directory seperators: ```/``` or ```\\```.  )Using the ```\``` character will throw an error as it is a JSON escape character.)
+- The following path variables may be used:
+  - %PUBLICDOCUMENTS%
+  - %USERPROFILE%
+  - %RELEASE% (As in "Inventor %RELEASE%" = "Inventor 2021")
+  - %LANGUAGE%
+
+### Example Config
 
 ```json
 {   "ConfigName" : "Default Config",
@@ -86,10 +93,24 @@ To verify a JSON configuration file's syntax is formatted correctly, issue the f
     }
 ```
 
-Where:
+### JSON Configuration Key/Values
 
-- CCAccess = ```Desktop``` or ```Vault```
-- DefaultDrawingFileType = ```idw``` or ```dwg```
-- CleanExternalRuleDirectories = ```true``` or ```false```
-  - Will remove all existing ExternalRuleDirectories before adding those you list
-- Paths should use either of the following directory seperators: ```/``` or ```\\```.  Using the ```\``` character will throw an error as it is a JSON escape character.
+|Option|Value Type|Description|
+|------|-------|-------|
+|ConfigName|string|A user name for the configuration.  This is not used by Inventor at all; it is provided for the people editing the configuration.|
+|UserName|string|The User Name used by Inventor.|
+|DefaultVBAProjectFileFullFilename|string|The default VBA project location.  Must be a valid file location.|
+|TemplatesPath|string|Default template folder.|
+|DesignDataPath|string|Default design data folder.|
+|PresetsPath|string|User preset folder.|
+|SymbolLibraryPath|string|Symbol library folder.|
+|SheetMetalPunchesRootPath|string|Sheet metal punches iFeatures folder.|
+|iFeatureOptionsRootPath|string|iFeatures folder.|
+|CCAccess|string|Content Center access type. Valid values are "desktop" or "vault".|
+|CCLibraryPath|string|Content Center libraries path.|
+|CCCustomFamilyAsStandard|boolean|Controls if Content Center parts are placed as custom parts or standard parts.|
+|CCRefreshOutOfDateStandardParts|boolean|Controls if Content Center parts are automatically refreshed when placed.|
+|SectionAllParts|boolean|Controls if all parts are sectioned in drawing section views.|
+|DefaultDrawingFileType|string|Controls the default drawing file format.  Valid values are "idw" or "dwg".|
+|CleanExternalRuleDirectories|boolean|If this is set to true, the existing ExternalRuleDirectories will be deleted before applying the ones specified below.|
+|ExternalRuleDirectories|array|Directories to search for iLogic rules.|
