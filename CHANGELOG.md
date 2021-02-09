@@ -1,4 +1,19 @@
 
+<a name="v2.0.0"></a>
+## [v2.0.0](https://github.com/jordanrobot/config-loader/compare/v1.1.0...v2.0.0) (2021-02-08)
+
+### Docs
+
+* removed reference to --output as Future Feat
+* updated readme, json spec
+* Added changelog
+
+### BREAKING CHANGE
+
+
+The console application was renamed to inventor-config
+
+
 <a name="v1.1.0"></a>
 ## [v1.1.0](https://github.com/jordanrobot/config-loader/compare/v1.0.0...v1.1.0) (2021-02-06)
 
