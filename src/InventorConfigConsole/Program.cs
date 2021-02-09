@@ -1,9 +1,9 @@
 ﻿using System;
-using ConfigLoader;
+using InventorConfig;
 using CommandLine;
 using CommandLine.Text;
 
-namespace ConfigLoaderConsole
+namespace InventorConfigConsole
 {
     internal static class Program
     {

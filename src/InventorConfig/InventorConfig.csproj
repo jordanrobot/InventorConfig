@@ -2,18 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>ConfigLoader</RootNamespace>
-    <Version>1.1.0</Version>
+    <RootNamespace>InventorConfig</RootNamespace>
+    <Version>2.0.0</Version>
     <Authors>jordanrobot</Authors>
     <Company />
     <Description>This is a simple config tool for Autodesk Inventor to standardize Inventor configurations across users' computers.</Description>
     <Copyright>(C) 2021</Copyright>
-    <RepositoryUrl>https://github.com/jordanrobot/config-loader.git</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/jordanrobot/config-loader</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/jordanrobot/inventor-config.git</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/jordanrobot/inventor-config</PackageProjectUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <AssemblyVersion>1.1.0</AssemblyVersion>
-    <FileVersion>1.1.0</FileVersion>
+    <AssemblyVersion>2.0.0</AssemblyVersion>
+    <FileVersion>2.0.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

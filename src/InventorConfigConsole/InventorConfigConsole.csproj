@@ -8,10 +8,13 @@
     <ProjectGuid>{7962CBDE-5B56-4E80-B5E9-AF6A782A525C}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConfigLoaderConsole</RootNamespace>
-    <AssemblyName>ConfigLoaderConsole</AssemblyName>
+    <RootNamespace>InventorConfigConsole</RootNamespace>
+    <AssemblyName>InventorConfigConsole</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,11 +27,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -66,9 +66,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ConfigLoader\ConfigLoader.csproj">
+    <ProjectReference Include="..\InventorConfig\InventorConfig.csproj">
       <Project>{358648b4-4fb7-405a-befa-820bcd3ab295}</Project>
-      <Name>config-loader-logic</Name>
+      <Name>InventorConfig</Name>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </ProjectReference>
   </ItemGroup>
@@ -89,7 +89,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>$(ILMergeConsolePath) /target:exe /allowDup /out:$(OutDir)config-loader.exe $(OutDir)ConfigLoaderConsole.exe $(OutDir)ConfigLoader.dll $(OutDir)CommandLine.dll $(OutDir)Newtonsoft.Json.dll</PostBuildEvent>
+    <PostBuildEvent>$(ILMergeConsolePath) /target:exe /allowDup /out:$(OutDir)inventor-config.exe $(OutDir)InventorConfigConsole.exe $(OutDir)InventorConfig.dll $(OutDir)CommandLine.dll $(OutDir)Newtonsoft.Json.dll</PostBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

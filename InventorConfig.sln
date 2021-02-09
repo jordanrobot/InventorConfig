@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigLoaderConsole", "src\ConfigLoaderConsole\ConfigLoaderConsole.csproj", "{7962CBDE-5B56-4E80-B5E9-AF6A782A525C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventorConfigConsole", "src\InventorConfigConsole\InventorConfigConsole.csproj", "{7962CBDE-5B56-4E80-B5E9-AF6A782A525C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfigLoader", "src\ConfigLoader\ConfigLoader.csproj", "{358648B4-4FB7-405A-BEFA-820BCD3AB295}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventorConfig", "src\InventorConfig\InventorConfig.csproj", "{358648B4-4FB7-405A-BEFA-820BCD3AB295}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

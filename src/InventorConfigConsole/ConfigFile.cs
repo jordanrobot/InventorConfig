@@ -1,13 +1,13 @@
 using System.IO;
 using System.Reflection;
 
-namespace ConfigLoaderConsole
+namespace InventorConfigConsole
 {
     public class ConfigFile
     {
         public string FilePath { get; set; }
 
-        private readonly string _defaultConfigFileName = "config-loader.json";
+        private readonly string _defaultConfigFileName = "default.json";
         private readonly string _currentDirectory = System.Environment.CurrentDirectory;
         private readonly string _executableLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 

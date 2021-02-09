@@ -2,7 +2,7 @@
 using System.IO;
 using Newtonsoft.Json;
 
-namespace ConfigLoader
+namespace InventorConfig
 {
     public class ConfigEngine
     {

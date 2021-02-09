@@ -6,7 +6,7 @@ using System.Runtime.Versioning;
 using System.Security;
 using Inventor;
 
-namespace ConfigLoader
+namespace InventorConfig
 {
     //var invApp = InventorInstance.GetInventorAppReference();
     static class InventorInstance

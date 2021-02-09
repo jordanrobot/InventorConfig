@@ -3,7 +3,7 @@ using Inventor;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace ConfigLoader
+namespace InventorConfig
 {
     [Serializable()]
     public class Configuration
