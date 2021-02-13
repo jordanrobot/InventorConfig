@@ -25,6 +25,8 @@ namespace InventorConfig
         public string DefaultDrawingFileType;
         public bool CleanExternalRuleDirectories;
         public string[] ExternalRuleDirectories;
+        private string _invUserName;
+        private string _winUserName { get; } = System.Environment.UserName;
 
 
         [NonSerialized()]
@@ -38,6 +40,8 @@ namespace InventorConfig
             iLogicAuto = GetiLogicAddIn(app);
 
             SetStringOption(UserName, s => app.GeneralOptions.UserName = s);
+            _invUserName = app.GeneralOptions.UserName;
+
             SetStringOption(DefaultVBAProjectFileFullFilename, s => app.FileOptions.DefaultVBAProjectFileFullFilename = s);
             SetStringOption(TemplatesPath, s => app.FileOptions.TemplatesPath = s);
             SetStringOption(DesignDataPath, s => app.FileOptions.DesignDataPath = s);
@@ -88,14 +92,34 @@ namespace InventorConfig
             if (String.IsNullOrEmpty(prop))
                 return;
 
+            prop = ParseForWinUserName(prop);
+            prop = ParseForInvUserName(prop);
+
+
             try
             {
                 appOption(prop);
             }
             catch (Exception e)
             {
-                throw new SystemException("The value of the " + nameof(appOption) + " setting in the json configuration file was invalid.", e);
+                throw new SystemException("The value of the " + nameof(appOption) + " setting in the JSON configuration file was invalid.", e);
             }
+        }
+
+        private string ParseForWinUserName(string prop)
+        {
+            if (String.IsNullOrEmpty(_winUserName))
+                return prop;
+
+            return prop.Replace("%USERNAME%", _winUserName);
+        }
+
+        private string ParseForInvUserName(string prop)
+        {
+            if (String.IsNullOrEmpty(_invUserName))
+                return prop;
+
+            return prop.Replace("%INVUSERNAME%", _invUserName);
         }
 
         private void SetCCAccessOption(string access, string path)
@@ -121,7 +145,7 @@ namespace InventorConfig
             }
             catch (Exception e)
             {
-                throw new SystemException("The value of the CCLibraryPath setting in the json configuration file was invalid.", e);
+                throw new SystemException("The value of the CCLibraryPath setting in the JSON configuration file was invalid.", e);
             }
         }
 
