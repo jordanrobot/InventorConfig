@@ -60,11 +60,13 @@ To verify a JSON configuration file's syntax is formatted correctly, issue the f
 - You can create a JSON configuration from an existing Inventor install using the --output option.
 - You can create multiple JSON config files, each with a different configuration.
 - Paths should use either of the following directory separators: ```/``` or ```\\```.  (Using the ```\``` character will throw an error as it is a JSON escape character.)
-- The following path variables may be used:
+- The following variables may be used in paths:
   - %PUBLICDOCUMENTS%
   - %USERPROFILE%
   - %RELEASE% (As in "Inventor %RELEASE%" = "Inventor 2021")
   - %LANGUAGE%
+  - %USERNAME%
+  - %INVUSERNAME% (Inventor Options User Name)
 
 ### Example Config
 
