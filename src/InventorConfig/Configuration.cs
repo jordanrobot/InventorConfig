@@ -25,6 +25,7 @@ namespace InventorConfig
         public string DefaultDrawingFileType;
         public bool CleanExternalRuleDirectories;
         public string[] ExternalRuleDirectories;
+        public string[] ProjectFiles;
         private string _invUserName;
         private string _winUserName { get; } = System.Environment.UserName;
 
@@ -60,6 +61,7 @@ namespace InventorConfig
 
             EmptyExternalRuleDirectories();
             SetExternalRuleDirectories();
+            SetProjectFiles();
         }
 
         public void GetConfigurationFromInventor(Application application)
@@ -85,6 +87,7 @@ namespace InventorConfig
             GetDefaultDrawingOption();
             CleanExternalRuleDirectories = false;
             GetExternalRuleDirectories();
+            GetProjectFiles();
         }
 
         private void SetStringOption(string prop, Action<string> appOption)
@@ -206,6 +209,55 @@ namespace InventorConfig
                     DefaultDrawingFileType = "idw";
                     break;
             }
+        }
+
+        internal void SetProjectFiles()
+        {
+            if (ProjectFiles.Length == 0)
+                return;
+
+            List<string> existingProjectPaths = new List<string>();
+
+            //get the list of existing paths
+            DesignProjects designProjects = app.DesignProjectManager.DesignProjects;
+            foreach (DesignProject designProject in designProjects)
+            {
+                existingProjectPaths.Add(designProject.FullFileName);
+            }
+
+            foreach (string projectFile in ProjectFiles)
+            {
+                if (!System.IO.File.Exists(projectFile))
+                {
+                    Console.WriteLine("the file " + projectFile + " does not exist. Skipping this project file...");
+                    continue;
+                }
+
+                if (!existingProjectPaths.Contains(projectFile))
+                {
+                    try
+                    {
+                        designProjects.AddExisting(projectFile);
+                    }
+                    catch (Exception e)
+                    {
+                        throw new SystemException("There was an error adding the project " + projectFile, e);
+                    }
+                }
+            }
+        }
+
+        internal void GetProjectFiles()
+        {
+            List<string> existingProjectPaths = new List<string>();
+
+            DesignProjects designProjects = app.DesignProjectManager.DesignProjects;
+            foreach (DesignProject designProject in designProjects)
+            {
+                existingProjectPaths.Add(designProject.FullFileName);
+            }
+
+            ProjectFiles = existingProjectPaths.ToArray();
         }
 
         internal void SetExternalRuleDirectories()

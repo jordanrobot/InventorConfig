@@ -90,6 +90,9 @@ To verify a JSON configuration file's syntax is formatted correctly, issue the f
     "ExternalRuleDirectories" : [
         "directory",
         "directory2"
+     ],
+     "ProjectFiles": [
+        "%PUBLICDOCUMENTS%/Autodesk/Inventor 2021/Default.ipj"
      ]
     }
 ```
@@ -115,3 +118,4 @@ To verify a JSON configuration file's syntax is formatted correctly, issue the f
 |DefaultDrawingFileType|string|Controls the default drawing file format.  Valid values are "idw" or "dwg".|
 |CleanExternalRuleDirectories|boolean|If this is set to true, the existing ExternalRuleDirectories will be deleted before applying the ones specified below.|
 |ExternalRuleDirectories|array|Directories to search for iLogic rules.|
+|ProjectFiles|array|Project files to load into Inventor's list of projects.|
