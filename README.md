@@ -92,7 +92,7 @@ To verify a JSON configuration file's syntax is formatted correctly, issue the f
         "directory2"
      ],
      "ProjectFiles": [
-        "%PUBLICDOCUMENTS%/Autodesk/Inventor 2021/Default.ipj"
+        "%PUBLICDOCUMENTS%\\Autodesk\\Inventor 2021\\Default.ipj"
      ]
     }
 ```

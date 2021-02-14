@@ -15,5 +15,8 @@
     "DefaultDrawingFileType" : "dwg",
     "CleanExternalRuleDirectories" : true,
     "ExternalRuleDirectories" : [
+     ],
+     "ProjectFiles": [
+        "%PUBLICDOCUMENTS%\\Autodesk\\Inventor 2021\\Default.ipj"
      ]
     }
