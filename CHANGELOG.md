@@ -1,4 +1,22 @@
 
+<a name="2.1.0"></a>
+## [2.1.0](https://github.com/jordanrobot/config-loader/compare/v2.0.0...2.1.0) (2021-02-13)
+
+### Chore
+
+* updated social image for rename
+
+### Docs
+
+* updated ProjectFiles in samples
+* Updated changelog
+
+### Feat
+
+* add ProjectFiles
+* Added %USERNAME% and %INVUSERNAME% parsing
+
+
 <a name="v2.0.0"></a>
 ## [v2.0.0](https://github.com/jordanrobot/config-loader/compare/v1.1.0...v2.0.0) (2021-02-08)
 
