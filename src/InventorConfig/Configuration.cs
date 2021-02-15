@@ -24,8 +24,8 @@ namespace InventorConfig
         public bool SectionAllParts;
         public string DefaultDrawingFileType;
         public bool CleanExternalRuleDirectories;
-        public string[] ExternalRuleDirectories;
-        public string[] ProjectFiles;
+        public string[] ExternalRuleDirectories = {};
+        public string[] ProjectFiles = {};
         private string _invUserName;
         private string _winUserName { get; } = System.Environment.UserName;
 
