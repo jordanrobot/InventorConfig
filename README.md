@@ -119,3 +119,23 @@ To verify a JSON configuration file's syntax is formatted correctly, issue the f
 |CleanExternalRuleDirectories|boolean|If this is set to true, the existing ExternalRuleDirectories will be deleted before applying the ones specified below.|
 |ExternalRuleDirectories|array|Directories to search for iLogic rules.|
 |ProjectFiles|array|Project files to load into Inventor's list of projects.|
+
+### Build
+
+InventorConfig dependencies:
+
+* Autodesk Inventor installation (2021 tested)
+* Newtonsoft.Json (Nuget)
+* Microsoft.CSharp (Nuget)
+* CommandLineParser (Nuget)
+
+Nuke build dependencies:
+
+* GitVersion.CommandLine (Nuget)
+* Nuke.Common (Nuget)
+
+To build, enter the following command in powershell:
+
+* `nuke compile`
+
+The inventor-config.exe will be placed in the `artifacts/` directory
