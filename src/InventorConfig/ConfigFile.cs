@@ -1,7 +1,7 @@
 using System.IO;
 using System.Reflection;
 
-namespace InventorConfigConsole
+namespace InventorConfig
 {
     public class ConfigFile
     {

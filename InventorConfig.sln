@@ -9,22 +9,35 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventorConfig", "src\Inven
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{4AADCB99-52EF-42B1-92D6-2F54350EFD8D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventorConfigGui", "src\InventorConfigGui\InventorConfigGui.csproj", "{2876C930-BA16-4371-8325-D5C309320A9D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		GUI Debug|Any CPU = GUI Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{7962CBDE-5B56-4E80-B5E9-AF6A782A525C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7962CBDE-5B56-4E80-B5E9-AF6A782A525C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7962CBDE-5B56-4E80-B5E9-AF6A782A525C}.GUI Debug|Any CPU.ActiveCfg = GUI Default|Any CPU
 		{7962CBDE-5B56-4E80-B5E9-AF6A782A525C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7962CBDE-5B56-4E80-B5E9-AF6A782A525C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{358648B4-4FB7-405A-BEFA-820BCD3AB295}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{358648B4-4FB7-405A-BEFA-820BCD3AB295}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{358648B4-4FB7-405A-BEFA-820BCD3AB295}.GUI Debug|Any CPU.ActiveCfg = GUI Default|Any CPU
+		{358648B4-4FB7-405A-BEFA-820BCD3AB295}.GUI Debug|Any CPU.Build.0 = GUI Default|Any CPU
 		{358648B4-4FB7-405A-BEFA-820BCD3AB295}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{358648B4-4FB7-405A-BEFA-820BCD3AB295}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4AADCB99-52EF-42B1-92D6-2F54350EFD8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AADCB99-52EF-42B1-92D6-2F54350EFD8D}.GUI Debug|Any CPU.ActiveCfg = GUI Default|Any CPU
 		{4AADCB99-52EF-42B1-92D6-2F54350EFD8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2876C930-BA16-4371-8325-D5C309320A9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2876C930-BA16-4371-8325-D5C309320A9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2876C930-BA16-4371-8325-D5C309320A9D}.GUI Debug|Any CPU.ActiveCfg = GUI Default|Any CPU
+		{2876C930-BA16-4371-8325-D5C309320A9D}.GUI Debug|Any CPU.Build.0 = GUI Default|Any CPU
+		{2876C930-BA16-4371-8325-D5C309320A9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2876C930-BA16-4371-8325-D5C309320A9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
