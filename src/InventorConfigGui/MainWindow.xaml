@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InventorConfigGui"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button x:Name="ApplyConfigButton" Width="70" Height="25" Content="Apply" Click="ApplyConfigButton_Click"/>
+        Title="InventorConfig" Height="150" Width="550">
+    <Grid Margin="0,0,0,0">
+        <Button x:Name="ApplyConfigButton" Content="Apply Config" Click="ApplyConfigButton_Click" Margin="0,0,56,10" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="85"/>
+        <Rectangle x:Name="StatusIcon" HorizontalAlignment="Left"  Margin="10,0,0,15" Width="15" Height="15" RenderTransformOrigin="0.75,-1.499" VerticalAlignment="Bottom"/>
+        <Button x:Name="SaveConfigButton" Height="25" Content="Save Config" HorizontalAlignment="Right" Margin="0,0,146,10" VerticalAlignment="Bottom" Width="75" Click="SaveConfigButton_Click"/>
+        <TextBox x:Name="FileNameTextBox" Margin="10,43,62,0" Text="" Height="24" VerticalAlignment="Top"/>
+        <Button x:Name="BrowseButton" Content="Browse" Margin="0,43,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.505,0.503" HorizontalAlignment="Right" Width="47" Height="24" Click="BrowseButton_Click"/>
+        <Label x:Name="label" Content="Select a configuration file to load into Inventor:" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.395,0.002" Height="29"/>
+        <Button x:Name="CloseButton" Height="25" Content="Close" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="41" Click="CloseButton_Click"/>
+        <Label x:Name="StatusTextBox" Content="" Padding="5,3" Margin="30,0,0,10" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="280"/>
     </Grid>
 </Window>

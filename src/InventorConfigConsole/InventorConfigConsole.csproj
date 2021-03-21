@@ -49,7 +49,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'GUI Default|AnyCPU'">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'GUIDebug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\GUI Default\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>

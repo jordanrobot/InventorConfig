@@ -2,9 +2,17 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net48</TargetFramework>
     <UseWPF>true</UseWPF>
-    <Configurations>Debug;Release;GUI Default</Configurations>
+    <Configurations>Debug;Release;GUIDebug</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath></OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GUIDebug|AnyCPU'">
+    <OutputPath>..\..\artifacts\guiDebug</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

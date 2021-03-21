@@ -302,7 +302,14 @@ namespace InventorConfig
             if (CleanExternalRuleDirectories)
             {
                 string[] temp = { };
-                iLogicAuto.FileOptions.ExternalRuleDirectories = temp;
+                try
+                {
+                    iLogicAuto.FileOptions.ExternalRuleDirectories = temp;
+                }
+                catch (SystemException e)
+                {
+                    //"The iLogicAuto FileOptions.ExternalRuleDirectories could not be accessed. " + e);
+                }
             }
         }
 
