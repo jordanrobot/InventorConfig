@@ -14,7 +14,7 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <AssemblyVersion>2.1.0</AssemblyVersion>
     <FileVersion>2.1.0</FileVersion>
-    <Configurations>Debug;Release;GUIDebug</Configurations>
+    <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -22,14 +22,16 @@
     <DocumentationFile></DocumentationFile>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GUIDebug|AnyCPU'">
-    <OutputPath>..\..\artifacts\Debug\</OutputPath>
-    <DocumentationFile />
-  </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <OutputPath>..\..\artifacts\Release\</OutputPath>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE.md" Link="LICENSE.md">
+      <PackagePath></PackagePath>
+      <Pack>True</Pack>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
@@ -42,13 +44,6 @@
       <Private>true</Private>
       <EmbedInteropTypes>true</EmbedInteropTypes>
     </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\..\LICENSE.md">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
   </ItemGroup>
 
 </Project>

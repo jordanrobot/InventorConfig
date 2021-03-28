@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 using InventorConfig;
 using Microsoft.Win32;
 
-namespace InventorConfigGui
+namespace InventorConfig.Gui
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -60,9 +60,9 @@ namespace InventorConfigGui
 
             StatusIcon.Fill = System.Windows.Media.Brushes.Yellow;
             ConfigFile configFile = new ConfigFile();
-            configFile.GetLoadConfigFile(fileName);
+            configFile.SetApplyConfigFilePath(fileName);
 
-            if (configFile.FilePath is null)
+            if (configFile.Path is null)
             {
                 StatusRed();
                 StatusTextBox.Content = "The selected file could not be found.";
@@ -73,7 +73,7 @@ namespace InventorConfigGui
             try
             {
                 ConfigEngine configEngine = new ConfigEngine();
-                configEngine.LoadConfig(configFile.FilePath);
+                configEngine.LoadConfigFromFile(configFile.Path);
                 StatusIcon.Fill = System.Windows.Media.Brushes.Green;
                 StatusGreen();
                 StatusTextBox.Content = "Configuration Applied.";
@@ -113,7 +113,7 @@ namespace InventorConfigGui
             try
             {
                 ConfigEngine configEngine = new ConfigEngine();
-                configEngine.WriteConfig(saveFileDialog.FileName);
+                configEngine.WriteConfigToFile(saveFileDialog.FileName);
             }
             catch (Exception ex)
             {

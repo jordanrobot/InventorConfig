@@ -3,39 +3,39 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventorConfigConsole", "src\InventorConfigConsole\InventorConfigConsole.csproj", "{7962CBDE-5B56-4E80-B5E9-AF6A782A525C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventorConfig", "src\InventorConfig\InventorConfig.csproj", "{358648B4-4FB7-405A-BEFA-820BCD3AB295}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{4AADCB99-52EF-42B1-92D6-2F54350EFD8D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventorConfigGui", "src\InventorConfigGui\InventorConfigGui.csproj", "{2876C930-BA16-4371-8325-D5C309320A9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventorConfig.Gui", "src\InventorConfig.Gui\InventorConfig.Gui.csproj", "{2876C930-BA16-4371-8325-D5C309320A9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventorConfig.Tests", "tests\InventorConfig.Tests\InventorConfig.Tests.csproj", "{ACB72115-5524-4CDB-8BDD-1B5F706BE6FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventorConfig.Console", "src\InventorConfig.Console\InventorConfig.Console.csproj", "{7962CBDE-5B56-4E80-B5E9-AF6A782A525C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		GUI Debug|Any CPU = GUI Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7962CBDE-5B56-4E80-B5E9-AF6A782A525C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7962CBDE-5B56-4E80-B5E9-AF6A782A525C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7962CBDE-5B56-4E80-B5E9-AF6A782A525C}.GUI Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7962CBDE-5B56-4E80-B5E9-AF6A782A525C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7962CBDE-5B56-4E80-B5E9-AF6A782A525C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{358648B4-4FB7-405A-BEFA-820BCD3AB295}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{358648B4-4FB7-405A-BEFA-820BCD3AB295}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{358648B4-4FB7-405A-BEFA-820BCD3AB295}.GUI Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{358648B4-4FB7-405A-BEFA-820BCD3AB295}.GUI Debug|Any CPU.Build.0 = Debug|Any CPU
 		{358648B4-4FB7-405A-BEFA-820BCD3AB295}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{358648B4-4FB7-405A-BEFA-820BCD3AB295}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4AADCB99-52EF-42B1-92D6-2F54350EFD8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4AADCB99-52EF-42B1-92D6-2F54350EFD8D}.GUI Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4AADCB99-52EF-42B1-92D6-2F54350EFD8D}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AADCB99-52EF-42B1-92D6-2F54350EFD8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2876C930-BA16-4371-8325-D5C309320A9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2876C930-BA16-4371-8325-D5C309320A9D}.GUI Debug|Any CPU.ActiveCfg = GUIDebug|Any CPU
-		{2876C930-BA16-4371-8325-D5C309320A9D}.GUI Debug|Any CPU.Build.0 = GUIDebug|Any CPU
-		{2876C930-BA16-4371-8325-D5C309320A9D}.Release|Any CPU.ActiveCfg = GUIDebug|Any CPU
+		{2876C930-BA16-4371-8325-D5C309320A9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2876C930-BA16-4371-8325-D5C309320A9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2876C930-BA16-4371-8325-D5C309320A9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACB72115-5524-4CDB-8BDD-1B5F706BE6FF}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{ACB72115-5524-4CDB-8BDD-1B5F706BE6FF}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{ACB72115-5524-4CDB-8BDD-1B5F706BE6FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7962CBDE-5B56-4E80-B5E9-AF6A782A525C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7962CBDE-5B56-4E80-B5E9-AF6A782A525C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7962CBDE-5B56-4E80-B5E9-AF6A782A525C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7962CBDE-5B56-4E80-B5E9-AF6A782A525C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

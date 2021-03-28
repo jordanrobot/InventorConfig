@@ -6,26 +6,22 @@ namespace InventorConfig
 {
     public class ConfigEngine
     {
-        private string _configRaw;
+        private string _configRawText;
         private bool _closeInventorAfterCompletion;
         private Configuration Config { get; set; }
         private Inventor.Application App { get; set; }
 
-        public void LoadConfig(string _configPath, bool test = false)
+        public void LoadConfigFromFile(string _configPath)
         {
-            _configRaw = GetFileContents(_configPath);
+            _configRawText = GetConfigFileContents(_configPath);
             Config = DeserializeConfiguration();
-
-            if (test)
-                return;
-
             DecideIfWeShouldCloseInventorAfterCompletion();
             App = GetInventorInstance();
             Config.LoadConfigurationIntoInventor(App);
             CloseInventorIfRequired();
         }
 
-        public void WriteConfig(string _configPath)
+        public void WriteConfigToFile(string _configPath)
         {
             DecideIfWeShouldCloseInventorAfterCompletion();
             App = GetInventorInstance();
@@ -37,15 +33,18 @@ namespace InventorConfig
             CloseInventorIfRequired();
         }
 
-        private string GetFileContents(string _configPath)
+        public static string GetConfigFileContents(string _configPath)
         {
             try
             {
-                return File.ReadAllText(_configPath);
+                using (var sr = new StreamReader(_configPath))
+                {
+                    return sr.ReadToEnd();
+                }
             }
-            catch (Exception e)
+            catch (IOException ex)
             {
-                throw new SystemException("There was an error reading the json configuration file from disk.  Process was aborted, press any key to continue...", e);
+                throw new SystemException("There was an error reading the JSON configuration file from disk.  Process was aborted, press any key to continue...", ex);
             }
         }
 
@@ -53,7 +52,7 @@ namespace InventorConfig
         {
             try
             {
-                return JsonConvert.DeserializeObject< Configuration>(_configRaw);
+                return JsonConvert.DeserializeObject< Configuration>(_configRawText);
             }
             catch (Exception e)
             {
@@ -89,16 +88,17 @@ namespace InventorConfig
             }
         }
 
-
         private void SerializeConfiguration(Configuration config, string outputFile)
         {
             JsonSerializer serializer = new JsonSerializer();
             serializer.NullValueHandling = NullValueHandling.Ignore;
 
-            StreamWriter sw = new StreamWriter(outputFile);
-            JsonWriter writer = new JsonTextWriter(sw);
-            serializer.Serialize(writer, config);
-            writer.Close();
+            using (var sw = new StreamWriter(outputFile))
+            {
+                JsonWriter writer = new JsonTextWriter(sw);
+                serializer.Serialize(writer, config);
+                writer.Close();
+            }
         }
     }
 }

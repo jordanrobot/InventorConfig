@@ -29,7 +29,6 @@ namespace InventorConfig
         private string _invUserName;
         private string _winUserName { get; } = System.Environment.UserName;
 
-
         [NonSerialized()]
         private Application app;
         [NonSerialized()]
@@ -88,6 +87,25 @@ namespace InventorConfig
             CleanExternalRuleDirectories = false;
             GetExternalRuleDirectories();
             GetProjectFiles();
+        }
+
+        internal object GetiLogicAddIn(Inventor.Application _app)
+        {
+            ApplicationAddIns appAddIns = _app.ApplicationAddIns;
+            ApplicationAddIn addIn = appAddIns.ItemById["{3bdd8d79-2179-4b11-8a5a-257b1c0263ac}"];
+
+            if (addIn == null)
+                throw new SystemException("The iLogic add-in could not be found by ID {3bdd8d79-2179-4b11-8a5a-257b1c0263ac}.");
+
+            try
+            {
+                addIn.Activate();
+                return addIn.Automation;
+            }
+            catch (Exception e)
+            {
+                throw new SystemException("The iLogic add-in could not be accessed.", e);
+            }
         }
 
         private void SetStringOption(string prop, Action<string> appOption)
@@ -313,23 +331,5 @@ namespace InventorConfig
             }
         }
 
-        internal object GetiLogicAddIn(Inventor.Application _app)
-        {
-            ApplicationAddIns appAddIns = _app.ApplicationAddIns;
-            ApplicationAddIn addIn = appAddIns.ItemById["{3bdd8d79-2179-4b11-8a5a-257b1c0263ac}"];
-
-            if (addIn == null)
-                throw new SystemException("The iLogic add-in could not be found by ID {3bdd8d79-2179-4b11-8a5a-257b1c0263ac}.");
-
-            try
-            {
-                addIn.Activate();
-                return addIn.Automation;
-            }
-            catch (Exception e)
-            {
-                throw new SystemException("The iLogic add-in could not be accessed.", e);
-            }
-        }
     }
 }

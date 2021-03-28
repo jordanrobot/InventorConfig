@@ -4,16 +4,21 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net48</TargetFramework>
     <UseWPF>true</UseWPF>
-    <Configurations>Debug;Release;GUIDebug</Configurations>
+    <Configurations>Debug;Release</Configurations>
+    <AssemblyName>inventor-config-gui</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath></OutputPath>
+    <OutputPath>..\..\artifacts\Debug\</OutputPath>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GUIDebug|AnyCPU'">
-    <OutputPath>..\..\artifacts\guiDebug</OutputPath>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>..\..\artifacts\Release\</OutputPath>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\InventorConfig\InventorConfig.csproj" />

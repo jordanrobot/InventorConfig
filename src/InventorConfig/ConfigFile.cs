@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Reflection;
 
@@ -5,36 +6,38 @@ namespace InventorConfig
 {
     public class ConfigFile
     {
-        public string FilePath { get; set; }
+        public string Path { get; set; }
+        public string Contents { get; set; }
+        //TODO: make the ConfigFile get the filecontents!!!
+        //TODO: constructor with the file path and write/read parameter options
 
         private readonly string _defaultConfigFileName = "default.json";
         private readonly string _currentDirectory = System.Environment.CurrentDirectory;
-        private readonly string _executableLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        private readonly string _executableLocation = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        private string _defaultConfigFullPath;
 
         public ConfigFile()
         {
+            _defaultConfigFullPath = System.IO.Path.Combine(_executableLocation, _defaultConfigFileName);
         }
 
-        public void GetLoadConfigFile(string path)
+        public void SetApplyConfigFilePath(string path)
         {
             if (string.IsNullOrEmpty(path))
             {
                 //try the default file....
-                var _defaultConfigFullPath = Path.Combine(_executableLocation, _defaultConfigFileName);
-
-                SetFilePathIfExists(_defaultConfigFullPath);
+                SetFilePathIfFileExists(_defaultConfigFullPath);
                 return;
             }
 
             //Is the specified file absolute?
-            if (!Path.IsPathRooted(path))
-                path = Path.Combine(_currentDirectory, path);
+            path = ReturnAbsolutePath(path);
 
-            SetFilePathIfExists(path);
+            SetFilePathIfFileExists(path);
             return;
         }
 
-        public void GetWriteConfigFile(string path)
+        public void SetWriteConfigFilePath(string path)
         {
             if (string.IsNullOrEmpty(path))
             {
@@ -42,20 +45,23 @@ namespace InventorConfig
             }
 
             //Is the specified file absolute?
-            if (!Path.IsPathRooted(path))
-                path = Path.Combine(_currentDirectory, path);
+            path = ReturnAbsolutePath(path);
 
-            FilePath = path;
+            Path = path;
             return;
         }
 
-        private void SetFilePathIfExists(string path)
+        private void SetFilePathIfFileExists(string path)
         {
-            if (File.Exists(path))
-            {
-                FilePath = path;
-                return;
-            }
+            Path = (File.Exists(path)) ? path : null;
+        }
+
+        public string ReturnAbsolutePath(string path)
+        {
+            if (!System.IO.Path.IsPathRooted(path))
+                return System.IO.Path.Combine(_currentDirectory, path);
+
+            return path;
         }
     }
 }

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "InventorConfig.Gui": {
+      "commandName": "Project",
+      "commandLineArgs": " --test"
+    }
+  }
+}
