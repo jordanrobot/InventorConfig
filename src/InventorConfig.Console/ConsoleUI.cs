@@ -25,12 +25,6 @@ namespace InventorConfig.Console
             ConfigFile configFile = new ConfigFile();
             configFile.SetWriteConfigFilePath(output);
 
-            if (configFile.Path is null)
-            {
-                ShowNoValidConfigFileError();
-                return;
-            }
-
             //modify the Inventor config
             try
             {
