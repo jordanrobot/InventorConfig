@@ -25,14 +25,17 @@ namespace InventorConfig.Gui
             var defaultFileName = "default.json";
             var defaultFullFileName = System.IO.Path.Combine(InitialDirectory, defaultFileName);
             if (System.IO.File.Exists(defaultFullFileName))
+            {
+                StatusCyan();
                 return defaultFullFileName;
+            }
 
             return "";
         }
 
         private void ApplyConfigButton_Click(object sender, RoutedEventArgs e)
         {
-            StatusYellow();
+            StatusCyan();
             ApplyConfig();
         }
 
@@ -45,32 +48,29 @@ namespace InventorConfig.Gui
             return;
             }
 
-            StatusIcon.Fill = System.Windows.Media.Brushes.Yellow;
+            StatusCyan();
 
             //modify the Inventor config
             try
             {
                 ConfigLoader configLoader = new ConfigLoader(fileName);
 
-                StatusGreen();
-                StatusTextBox.Content = "Configuration Applied.";
+                StatusGreen("Configuration Applied.");
             }
             catch (Exception ex)
             {
-                StatusRed();
-                StatusTextBox.Content = "Configuration failed to load.";
+                StatusRed("Configuration failed to load.");
                 throw new SystemException(ex.Message, ex);
             }
         }
 
         private void SaveConfigButton_Click(object sender, RoutedEventArgs e)
         {
-            StatusYellow();
+            StatusCyan();
             var test = SaveConfigToNewFile();
             if (test)
             {
-                StatusGreen();
-                StatusTextBox.Content = "Configuration Created.";
+                StatusGreen("Configuration Created.");
             }
         }
 
@@ -116,28 +116,52 @@ namespace InventorConfig.Gui
             if (openFileDialog.ShowDialog() == true)
                 FileNameTextBox.Text = openFileDialog.FileName;
 
-            StatusClear();
-            StatusTextBox.Content = "";
+            StatusCyan("");
         }
 
-        private void StatusRed()
+        private void StatusRed(string text = null)
         {
             StatusIcon.Fill = System.Windows.Media.Brushes.Red;
+            if (text != null)
+                StatusTextBox.Content = text;
         }
 
-        private void StatusGreen()
+        private void StatusGreen(string text = null)
         {
-            StatusIcon.Fill = System.Windows.Media.Brushes.Green;
+            StatusIcon.Fill = System.Windows.Media.Brushes.Lime;
+            if (text != null)
+                StatusTextBox.Content = text;
         }
 
-        private void StatusYellow()
+        private void StatusCyan(string text = null)
         {
-            StatusIcon.Fill = System.Windows.Media.Brushes.Yellow;
+            StatusIcon.Fill = System.Windows.Media.Brushes.DarkSlateGray;
+            if (text != null)
+                StatusTextBox.Content = text;
         }
 
-        private void StatusClear()
+        private void StatusClear(string text = null)
         {
             StatusIcon.Fill = System.Windows.Media.Brushes.Transparent;
+            if (text == null)
+            {
+                StatusTextBox.Content = "";
+            }
+            {
+                StatusTextBox.Content = text;
+            }
+        }
+
+        private void FileNameTextBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (System.IO.File.Exists(FileNameTextBox.Text))
+            {
+                StatusCyan("");
+            }
+            else
+            {
+                StatusRed("");
+            }
         }
     }
 }
