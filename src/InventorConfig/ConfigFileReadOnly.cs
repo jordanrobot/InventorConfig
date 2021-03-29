@@ -15,7 +15,9 @@ namespace InventorConfig
             if (string.IsNullOrEmpty(path))
                 path = _defaultConfigFullPath;
 
-            SetFilePathIfFileExists(path);
+            Path = path;
+
+            GuardAgainstInvalidFile(Path);
 
             //This also throws an error if the file cannot be read...
             GetConfigFileContents();
