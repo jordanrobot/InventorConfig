@@ -6,22 +6,27 @@ namespace InventorConfig
 {
     public class ConfigFile
     {
-        public string Path { get; set; }
-        public string Contents { get; set; }
-        //TODO: make the ConfigFile get the filecontents!!!
-        //TODO: constructor with the file path and write/read parameter options
+        private string _path;
 
-        private const string _defaultConfigFileName = "default.json";
-        private readonly string _currentDirectory = System.Environment.CurrentDirectory;
-        private readonly string _executableLocation = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        private string _defaultConfigFullPath;
+        public string Path
+        {
+            get { return _path; }
+            set { _path = ReturnAbsolutePath(value); }
+        }
+
+        public string Contents { get; set; }
+
+        protected const string _defaultConfigFileName = "default.json";
+        protected readonly string _currentDirectory = System.Environment.CurrentDirectory;
+        protected readonly string _executableLocation = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        protected string _defaultConfigFullPath;
 
         public ConfigFile()
         {
             _defaultConfigFullPath = System.IO.Path.Combine(_executableLocation, _defaultConfigFileName);
         }
 
-        private void GetConfigFileContents()
+        protected void GetConfigFileContents()
         {
             try
             {
@@ -36,46 +41,20 @@ namespace InventorConfig
             }
         }
 
-        public void SetApplyConfigFilePath(string path)
-        {
-            if (string.IsNullOrEmpty(path))
-            {
-                //try the default file....
-                SetFilePathIfFileExists(_defaultConfigFullPath);
-                return;
-            }
-
-            //Is the specified file absolute?
-            path = ReturnAbsolutePath(path);
-
-            SetFilePathIfFileExists(path);
-            GetConfigFileContents();
-            return;
-        }
-
-        public void SetWriteConfigFilePath(string path)
-        {
-            if (string.IsNullOrEmpty(path))
-            {
-                throw new System.Exception("The output path is blank. Exiting.");
-            }
-
-            //Is the specified file absolute?
-            Path = ReturnAbsolutePath(path);
-            return;
-        }
-
-        private void SetFilePathIfFileExists(string path)
+        protected void SetFilePathIfFileExists(string path)
         {
             Path = (File.Exists(path)) ? path : null;
         }
 
-        public string ReturnAbsolutePath(string path)
+        protected string ReturnAbsolutePath(string path)
         {
-            if (!System.IO.Path.IsPathRooted(path))
-                return System.IO.Path.Combine(_currentDirectory, path);
+            if (String.IsNullOrEmpty(path))
+                throw new Exception("The configuration path is empty; exiting.");
 
-            return path;
+            if (System.IO.Path.IsPathRooted(path))
+                return path;
+
+            return System.IO.Path.Combine(_currentDirectory, path);
         }
     }
 }

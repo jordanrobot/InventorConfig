@@ -22,19 +22,13 @@ namespace InventorConfig.Console
         {
             ShowReadBanner();
 
-            ConfigFile configFile = new ConfigFile();
-            configFile.SetWriteConfigFilePath(output);
-
-            //modify the Inventor config
             try
             {
-                ConfigEngine configEngine = new ConfigEngine();
-                configEngine.WriteConfigToFile(configFile.Path);
+                ConfigWriter configWriter = new ConfigWriter(output);
             }
             catch (Exception e)
             {
                 System.Console.WriteLine(e.Message);
-                //throw new SystemException(e.Message, e);
             }
         }
 
@@ -42,25 +36,13 @@ namespace InventorConfig.Console
         {
             ShowLoadBanner();
 
-            ConfigFile configFile = new ConfigFile();
-            configFile.SetApplyConfigFilePath(path);
-
-            if (configFile.Path is null)
-            {
-                ShowNoValidConfigFileError();
-                return;
-            }
-
-            //modify the Inventor config
             try
             {
-                ConfigEngine configEngine = new ConfigEngine();
-                configEngine.LoadConfigFromFile(configFile.Path);
+                ConfigLoader configLoader = new ConfigLoader(path);
             }
             catch (Exception e)
             {
                 System.Console.WriteLine(e.Message);
-                //throw new SystemException(e.Message, e);
             }
         }
 

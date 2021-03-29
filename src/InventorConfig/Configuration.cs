@@ -330,6 +330,5 @@ namespace InventorConfig
                 }
             }
         }
-
     }
 }

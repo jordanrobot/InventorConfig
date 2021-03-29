@@ -1,19 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using InventorConfig;
 using Microsoft.Win32;
 
 namespace InventorConfig.Gui
@@ -59,25 +46,14 @@ namespace InventorConfig.Gui
             }
 
             StatusIcon.Fill = System.Windows.Media.Brushes.Yellow;
-            ConfigFile configFile = new ConfigFile();
-            configFile.SetApplyConfigFilePath(fileName);
-
-            if (configFile.Path is null)
-            {
-                StatusRed();
-                StatusTextBox.Content = "The selected file could not be found.";
-                return;
-            }
 
             //modify the Inventor config
             try
             {
-                ConfigEngine configEngine = new ConfigEngine();
-                configEngine.LoadConfigFromFile(configFile.Path);
-                StatusIcon.Fill = System.Windows.Media.Brushes.Green;
+                ConfigLoader configLoader = new ConfigLoader(fileName);
+
                 StatusGreen();
                 StatusTextBox.Content = "Configuration Applied.";
-                return;
             }
             catch (Exception ex)
             {
@@ -101,19 +77,18 @@ namespace InventorConfig.Gui
         private bool SaveConfigToNewFile()
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.InitialDirectory = InitialDirectory;
-            saveFileDialog.Filter = FileFilter;
-            saveFileDialog.DefaultExt = "json";
-            saveFileDialog.Title = "Save the Inventor Configuration to a new file.";
-            saveFileDialog.OverwritePrompt = true;
+                saveFileDialog.InitialDirectory = InitialDirectory;
+                saveFileDialog.Filter = FileFilter;
+                saveFileDialog.DefaultExt = "json";
+                saveFileDialog.Title = "Save the Inventor Configuration to a new file.";
+                saveFileDialog.OverwritePrompt = true;
 
             if (saveFileDialog.ShowDialog() == true)
                 FileNameTextBox.Text = saveFileDialog.FileName;
 
             try
             {
-                ConfigEngine configEngine = new ConfigEngine();
-                configEngine.WriteConfigToFile(saveFileDialog.FileName);
+                ConfigWriter configWriter = new ConfigWriter(saveFileDialog.FileName);
             }
             catch (Exception ex)
             {
