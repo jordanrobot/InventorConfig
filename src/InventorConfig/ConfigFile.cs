@@ -11,7 +11,7 @@ namespace InventorConfig
         //TODO: make the ConfigFile get the filecontents!!!
         //TODO: constructor with the file path and write/read parameter options
 
-        private readonly string _defaultConfigFileName = "default.json";
+        private const string _defaultConfigFileName = "default.json";
         private readonly string _currentDirectory = System.Environment.CurrentDirectory;
         private readonly string _executableLocation = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         private string _defaultConfigFullPath;
@@ -19,6 +19,21 @@ namespace InventorConfig
         public ConfigFile()
         {
             _defaultConfigFullPath = System.IO.Path.Combine(_executableLocation, _defaultConfigFileName);
+        }
+
+        private void GetConfigFileContents()
+        {
+            try
+            {
+                using (var sr = new StreamReader(Path))
+                {
+                    Contents = sr.ReadToEnd();
+                }
+            }
+            catch (IOException ex)
+            {
+                throw new SystemException("There was an error reading the JSON configuration file from disk.  Process was aborted, press any key to continue...", ex);
+            }
         }
 
         public void SetApplyConfigFilePath(string path)
@@ -34,6 +49,7 @@ namespace InventorConfig
             path = ReturnAbsolutePath(path);
 
             SetFilePathIfFileExists(path);
+            GetConfigFileContents();
             return;
         }
 
@@ -45,9 +61,7 @@ namespace InventorConfig
             }
 
             //Is the specified file absolute?
-            path = ReturnAbsolutePath(path);
-
-            Path = path;
+            Path = ReturnAbsolutePath(path);
             return;
         }
 
