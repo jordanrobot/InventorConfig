@@ -1,0 +1,42 @@
+﻿<Window x:Class="InventorConfig.Gui.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InventorConfig.Gui"
+        mc:Ignorable="d"
+        Title="About InventorConfig" Height="220" Width="400" Background="White">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            
+        </Grid.RowDefinitions>
+        
+        <Label x:Name="AboutLabel" Grid.Row="1" Grid.Column="1">InventorConfig Version: </Label>
+        <TextBlock x:Name="AboutText" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Margin="0,25,0,0">
+            A simple tool that loads application options into Autodesk Inventor from a JSON file. Useful for (re)setting user's configs quickly.
+        </TextBlock>
+        <TextBlock x:Name="AboutLinkText" Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" Margin="0,10,0,0" >
+            
+            <Run>Find documentation and the latest version at github here:</Run>
+            <Hyperlink NavigateUri="https://github.com/jordanrobot/InventorConfig"
+                       RequestNavigate="Hyperlink_RequestNavigate">
+                https://github.com/jordanrobot/InventorConfig
+            </Hyperlink>
+        </TextBlock>
+        
+        <Button x:Name="AboutCloseButton" Content="Close"
+                Grid.Row="4" Grid.Column="3"
+                Margin="3" Padding="4" Click="AboutCloseButton_Click"/>
+        
+    </Grid>
+</Window>

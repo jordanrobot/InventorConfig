@@ -163,5 +163,11 @@ namespace InventorConfig.Gui
                 StatusRed("");
             }
         }
+
+        private void AboutButton_Click(object sender, RoutedEventArgs e)
+        {
+            AboutWindow aboutWindow = new AboutWindow();
+            aboutWindow.Show();
+        }
     }
 }
