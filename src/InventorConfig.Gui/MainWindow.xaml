@@ -11,6 +11,7 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>            
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
@@ -27,11 +28,11 @@
                Content="Select a configuration file to load into Inventor:"
                Margin="4" HorizontalAlignment="Left" />
 
-        <ComboBox x:Name="FileNameTextBox" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Padding="3" Margin="4"
+        <ComboBox x:Name="FileNameTextBox" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Padding="3" Margin="4"
                   Text="" VerticalAlignment="Center" IsEditable="True" SelectionChanged="FileNameTextBox_SelectionChanged"/>
 
         <Button x:Name="BrowseButton" Content="Browse"
-                Grid.Row="1" Grid.Column="4" Padding="3" Margin="4"
+                Grid.Row="1" Grid.Column="5" Padding="3" Margin="4"
                 Click="BrowseButton_Click"/>
 
         <Rectangle x:Name="StatusIcon" HorizontalAlignment="Left"
@@ -42,16 +43,20 @@
                Grid.Row="3" Grid.Column="1"
                Padding="3" VerticalAlignment="Center" />
 
-        <Button x:Name="SaveConfigButton" Content="Save New Config"
+        <Button x:Name="AboutButton" Content="About"
                 Grid.Row="3" Grid.Column="2" Margin="3" Padding="4"
+                Click="AboutButton_Click"/>
+
+        <Button x:Name="SaveConfigButton" Content="Save New Config"
+                Grid.Row="3" Grid.Column="3" Margin="3" Padding="4"
                 Click="SaveConfigButton_Click"/>
 
         <Button x:Name="ApplyConfigButton" Content="Apply Config"
-                 Grid.Row="3" Grid.Column="3"  Margin="3" Padding="4"
+                 Grid.Row="3" Grid.Column="4"  Margin="3" Padding="4"
                 Click="ApplyConfigButton_Click" />
 
         <Button x:Name="CloseButton" Content="Close"
-                Grid.Row="3" Grid.Column="4" Margin="3" Padding="4"
+                Grid.Row="3" Grid.Column="5" Margin="3" Padding="4"
                 Click="CloseButton_Click" />
     </Grid>
 </Window>
