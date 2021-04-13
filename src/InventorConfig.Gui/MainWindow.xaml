@@ -29,7 +29,10 @@
                Margin="4" HorizontalAlignment="Left" />
 
         <ComboBox x:Name="FileNameTextBox" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Padding="3" Margin="4"
-                  Text="" VerticalAlignment="Center" IsEditable="True" SelectionChanged="FileNameTextBox_SelectionChanged"/>
+                  Text="" VerticalAlignment="Center" IsEditable="True"
+                  SelectionChanged="FileNameTextBox_SelectionChanged"
+                  DropDownClosed="FileNameTextBox_DropDownClosed"
+                  SourceUpdated="FileNameTextBox_SourceUpdated"/>
 
         <Button x:Name="BrowseButton" Content="Browse"
                 Grid.Row="1" Grid.Column="5" Padding="3" Margin="4"

@@ -12,13 +12,17 @@ namespace InventorConfig.Gui
     {
         private String InitialDirectory = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         private String FileFilter = "JSON files (*.json)|*.json";
+        private ConfigHistoryHandler configHistory = new ConfigHistoryHandler();
 
         public MainWindow()
         {
             InitializeComponent();
 
             FileNameTextBox.Text = GetDefaultFileIfItExists();
+            configHistory.AddToConfigHistoryFile(GetDefaultFileIfItExists());
+            FileNameTextBox.ItemsSource = configHistory.Configs;
         }
+        //TODO: is not currently updating the combobox in real time as things are added.
 
         private string GetDefaultFileIfItExists()
         {
@@ -114,7 +118,11 @@ namespace InventorConfig.Gui
             openFileDialog.CheckFileExists = true;
 
             if (openFileDialog.ShowDialog() == true)
+            {
                 FileNameTextBox.Text = openFileDialog.FileName;
+            }
+            configHistory.AddToConfigHistoryFile(FileNameTextBox.Text);
+
 
             StatusCyan("");
         }
@@ -154,20 +162,35 @@ namespace InventorConfig.Gui
 
         private void FileNameTextBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            if (System.IO.File.Exists(FileNameTextBox.Text))
-            {
-                StatusCyan("");
-            }
-            else
-            {
-                StatusRed("");
-            }
+            ComboBoxUpdate();
         }
 
         private void AboutButton_Click(object sender, RoutedEventArgs e)
         {
             AboutWindow aboutWindow = new AboutWindow();
             aboutWindow.Show();
+        }
+
+        private void FileNameTextBox_SourceUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
+        {
+        }
+
+        private void FileNameTextBox_DropDownClosed(object sender, EventArgs e)
+        {
+            ComboBoxUpdate();
+        }
+
+        private void ComboBoxUpdate()
+        {
+            if (System.IO.File.Exists(FileNameTextBox.Text))
+            {
+                configHistory.AddToConfigHistoryFile(FileNameTextBox.Text);
+                StatusCyan("");
+            }
+            else
+            {
+                StatusRed("");
+            }
         }
     }
 }
