@@ -2,8 +2,9 @@
 using System.Reflection;
 using System.Windows;
 using Microsoft.Win32;
+using InventorConfig.Gui;
 
-namespace InventorConfig.Gui
+namespace InventorConfig.Gui.View
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

@@ -13,8 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Reflection;
 using System.Diagnostics;
+using InventorConfig.Gui;
 
-namespace InventorConfig.Gui
+namespace InventorConfig.Gui.View
 {
     /// <summary>
     /// Interaction logic for Window1.xaml
