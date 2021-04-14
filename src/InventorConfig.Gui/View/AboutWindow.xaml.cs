@@ -1,19 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Reflection;
+﻿using System.Windows;
 using System.Diagnostics;
-using InventorConfig.Gui;
+using InventorConfig.Gui.ViewModel;
+using System.ComponentModel;
 
 namespace InventorConfig.Gui.View
 {
@@ -22,24 +10,24 @@ namespace InventorConfig.Gui.View
     /// </summary>
     public partial class AboutWindow : Window
     {
+        public AboutViewModel About = new AboutViewModel();
+
         public AboutWindow()
         {
             InitializeComponent();
-            var version = Assembly.GetExecutingAssembly().GetName().Version;
-            AboutLabel.Content = "InventorConfig Version: " + version;
+            this.DataContext = About;
+        }
+
+        private void Hyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
+        {
+            // see https://docs.microsoft.com/dotnet/api/system.diagnostics.processstartinfo.useshellexecute#property-value
+            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+            e.Handled = true;
         }
 
         private void AboutCloseButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
-        }
-
-        private void Hyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
-        {
-            // for .NET Core you need to add UseShellExecute = true
-            // see https://docs.microsoft.com/dotnet/api/system.diagnostics.processstartinfo.useshellexecute#property-value
-            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
-            e.Handled = true;
         }
     }
 }

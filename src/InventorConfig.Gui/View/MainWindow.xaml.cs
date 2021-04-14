@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Windows;
 using Microsoft.Win32;
 using InventorConfig.Gui;
+using InventorConfig.Gui.ViewModel;
 
 namespace InventorConfig.Gui.View
 {
@@ -18,7 +19,7 @@ namespace InventorConfig.Gui.View
         public MainWindow()
         {
             InitializeComponent();
-
+            
             FileNameTextBox.Text = GetDefaultFileIfItExists();
             configHistory.AddToConfigHistoryFile(GetDefaultFileIfItExists());
             FileNameTextBox.ItemsSource = configHistory.Configs;

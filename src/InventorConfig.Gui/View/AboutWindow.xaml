@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InventorConfig.Gui.View"
+        xmlns:vm="clr-namespace:InventorConfig.Gui.ViewModel"
         mc:Ignorable="d"
-        Title="About InventorConfig" Height="220" Width="400" Background="White">
+        Title="About InventorConfig" SizeToContent="Height"  Width="400" Background="White">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="25"/>
@@ -20,17 +21,16 @@
             <RowDefinition Height="Auto" />
             
         </Grid.RowDefinitions>
-        
-        <Label x:Name="AboutLabel" Grid.Row="1" Grid.Column="1">InventorConfig Version: </Label>
-        <TextBlock x:Name="AboutText" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Margin="0,25,0,0">
-            A simple tool that loads application options into Autodesk Inventor from a JSON file. Useful for (re)setting user's configs quickly.
-        </TextBlock>
+
+        <TextBlock x:Name="AboutLabel" Grid.Row="1" Grid.Column="1" Margin="0,10,0,0"
+               Text="{Binding Path=VersionText}" d:Text="InventorConfig-Gui version 1000!" />
+
+        <TextBlock x:Name="AboutText" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Margin="0,10,0,0" Text="{Binding AboutText}"
+                    d:Text="This is a whole block of text that will go here!"/>
+
         <TextBlock x:Name="AboutLinkText" Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" Margin="0,10,0,0" >
-            
-            <Run>Find documentation and the latest version at github here:</Run>
-            <Hyperlink NavigateUri="https://github.com/jordanrobot/InventorConfig"
-                       RequestNavigate="Hyperlink_RequestNavigate">
-                https://github.com/jordanrobot/InventorConfig
+            <Hyperlink NavigateUri="{Binding Link}" RequestNavigate="Hyperlink_RequestNavigate" >
+                <TextBlock Text="{Binding Link}" d:Text="https://www.corso.com" />
             </Hyperlink>
         </TextBlock>
         
