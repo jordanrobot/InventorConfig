@@ -4,8 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InventorConfig.Gui.View"
+        xmlns:vm="clr-namespace:InventorConfig.Gui.ViewModel"
         mc:Ignorable="d"
         Title="InventorConfig" Height="147" Width="574">
+
     <Grid Margin="0,0,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -30,21 +32,22 @@
 
         <ComboBox x:Name="FileNameTextBox" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Padding="3" Margin="4"
                   Text="" VerticalAlignment="Center" IsEditable="True"
-                  SelectionChanged="FileNameTextBox_SelectionChanged"
-                  DropDownClosed="FileNameTextBox_DropDownClosed"
-                  SourceUpdated="FileNameTextBox_SourceUpdated"/>
+                  SelectedItem="{Binding SelectedConfig,UpdateSourceTrigger=PropertyChanged}" 
+                  ItemsSource="{Binding ConfigList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
 
         <Button x:Name="BrowseButton" Content="Browse"
                 Grid.Row="1" Grid.Column="5" Padding="3" Margin="4"
                 Click="BrowseButton_Click"/>
 
+        
         <Rectangle x:Name="StatusIcon" HorizontalAlignment="Left"
                    Grid.Row="3" Grid.Column="0" 
-                   Width="8" Height="15"/>
+                   Width="8" Height="15"
+                   Fill="{Binding Path=StatusColor,UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label x:Name="StatusTextBox" Content="" 
-               Grid.Row="3" Grid.Column="1"
-               Padding="3" VerticalAlignment="Center" />
+        <Label x:Name="StatusTextBox"  VerticalAlignment="Center"
+                Grid.Row="3" Grid.Column="1" Padding="3"
+                Content="{Binding Path=StatusMessage,UpdateSourceTrigger=PropertyChanged}"/>
 
         <Button x:Name="AboutButton" Content="About"
                 Grid.Row="3" Grid.Column="2" Margin="3" Padding="4"
