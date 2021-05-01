@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using InventorConfig.Gui.View;
 
 namespace InventorConfig.Gui
 {
