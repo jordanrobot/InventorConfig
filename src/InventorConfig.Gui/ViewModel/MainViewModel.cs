@@ -10,6 +10,7 @@ namespace InventorConfig.Gui.ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
+        //default file and application location strings
         private static readonly string _initialDirectory = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         private const string _defaultFileName = "default.json";
         private const string _fileFilter = "JSON files (*.json)|*.json";
@@ -48,6 +49,7 @@ namespace InventorConfig.Gui.ViewModel
                 {
                     RemoveFromConfigList(value);
                     _selectedConfig.FilePath = _defaultFilePath;
+                    StatusRed("The selected configuration does not exist on disk.");
                 }
             }
         }
@@ -90,11 +92,11 @@ namespace InventorConfig.Gui.ViewModel
         {
             if (_selectedConfig.ApplyConfig())
             {
-                StatusGreen("The Configuration Applied.");
+                StatusGreen("The Configuration was applied successfully.");
             }
             else
             {
-                StatusRed("The Configuration failed.");
+                StatusRed("The Configuration failed to be applied.");
             }
         }
 
