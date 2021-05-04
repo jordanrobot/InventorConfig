@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<Target Name="ILRepacker" AfterTargets="Build" Condition="'$(Configuration)' == 'Debug'">
+		<ItemGroup>
+			<InputAssemblies Include="$(TargetPath)"/>
+			<InputAssemblies Include="@(ReferencePathWithRefAssemblies)" Condition="'%(filename)' == 'Newtonsoft.Json'" />
+			<InputAssemblies Include="@(ReferencePathWithRefAssemblies)" Condition="'%(filename)' == 'InventorConfig'" />
+			<InputAssemblies Include="@(ReferencePathWithRefAssemblies)" Condition="'%(filename)' == 'Newtonsoft.Json'" />
+			<InputAssemblies Include="@(ReferencePathWithRefAssemblies)" Condition="'%(filename)' == 'Autodesk.Inventor.Interop'" />
+
+		</ItemGroup>
+
+		<ILRepack
+			AllowDuplicateResources="true"
+			DebugInfo="true"
+			Internalize="true"
+			InputAssemblies="@(InputAssemblies)"
+			OutputFile="$(TargetPath)"
+			Parallel="true"
+			TargetKind="SameAsPrimaryAssembly"
+			TargetPlatformVersion="v4"/>
+	</Target>
+</Project>
