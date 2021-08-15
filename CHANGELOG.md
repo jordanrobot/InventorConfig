@@ -1,3 +1,7 @@
+## [Unreleased Changes]
+
+### Fixed
+- Added conventional commits keywords to gitversion configuration.
 
 <a name="2.1.0"></a>
 ## [2.1.0](https://github.com/jordanrobot/config-loader/compare/v2.0.0...2.1.0) (2021-02-13)
