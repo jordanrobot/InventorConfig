@@ -7,13 +7,13 @@ namespace InventorConfig.Console
 {
     public class Options
     {
-        [Option("path", Required = false, HelpText = "Specify a filename of a configuration JSON file to load into Inventor.  May be a relative or absolute path.")]
+        [Option('p', "path", Required = false, HelpText = "Specify a filename of a configuration JSON file to load into Inventor.  May be a relative or absolute path.")]
         public string Path { get; set; }
 
 //        [Option("test", Required = false, HelpText = "Test JSON configuration file for valid format - Inventor settings will not be modified.")]
 //        public bool Test { get; set; }
 
-        [Option("output", Required = false, HelpText = "Specify a destination filename; writes a JSON file of the existing Inventor application configuration.  May be a relative or absolute path.")]
+        [Option('o', "output", Required = false, HelpText = "Specify a destination filename; writes a JSON file of the existing Inventor application configuration.  May be a relative or absolute path.")]
         public string Output { get; set; }
 
         [Usage(ApplicationAlias = "inventor-config")]

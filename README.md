@@ -25,26 +25,26 @@ You can also double-click the inventor-config.exe (if a ```default.json``` file 
 
 To load a user-supplied JSON configuration file into Inventor (say the config file is called ```default.json```), issue the command as shown:
 
-    inventor-config --path your-config.json
+    inventor-config -p your-config.json
 
 To create a JSON configuration file from Inventor's current options, issue the following command:
 
-    inventor-config --output your-config.json
+    inventor-config -o your-config.json
 
 To verify a JSON configuration file's syntax is formatted correctly, issue the following command:
 
-    inventor-config --path your-config.json --test
+    inventor-config -p your-config.json --test
 
 ### Command Line Options
 
 <dl>
-  <dt>--path</dt>
+  <dt>--path (-p)</dt>
   <dd>Specify a filename of a configuration json file to load into Inventor.  May be a relative or absolute path.</dd>
   
   <dt>--test</dt>
   <dd>Test json configuration file for valid format - Inventor settings will not be modified.</dd>
   
-  <dt>--output</dt>
+  <dt>--output (-o)</dt>
   <dd>Specify a destination filename; writes a json file of the existing Inventor application configuration.  May be a relative or absolute path.</dd>
   
   <dt>--help</dt>
