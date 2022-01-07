@@ -19,14 +19,15 @@ namespace InventorConfig
         public string iFeatureOptionsRootPath;
         public string CCAccess;
         public string CCLibraryPath;
-        public bool CCCustomFamilyAsStandard;
-        public bool CCRefreshOutOfDateStandardParts;
-        public bool SectionAllParts;
+        public bool? CCCustomFamilyAsStandard;
+        public bool? CCRefreshOutOfDateStandardParts;
+        public bool? SectionAllParts;
         public string DefaultDrawingFileType;
-        public bool CleanExternalRuleDirectories;
-        public string[] ExternalRuleDirectories = {};
-        public string[] ProjectFiles = {};
+        public bool? CleanExternalRuleDirectories;
+        public string[] ExternalRuleDirectories = { };
+        public string[] ProjectFiles = { };
         private string _invUserName;
+        public Dictionary<string, string> ControlShortcuts { get; set; }
         private string _winUserName { get; } = System.Environment.UserName;
 
         [NonSerialized()]
@@ -51,16 +52,17 @@ namespace InventorConfig
             SetStringOption(iFeatureOptionsRootPath, s => app.iFeatureOptions.RootPath = s);
 
             SetCCAccessOption(CCAccess, CCLibraryPath);
-            SetBoolOption(CCCustomFamilyAsStandard, b => app.ContentCenterOptions.CustomFamilyAsStandard = b);
-            SetBoolOption(CCRefreshOutOfDateStandardParts, b => app.ContentCenterOptions.RefreshOutOfDateStandardParts = b);
+            SetBoolOption(CCCustomFamilyAsStandard, b => app.ContentCenterOptions.CustomFamilyAsStandard = b.Value);
+            SetBoolOption(CCRefreshOutOfDateStandardParts, b => app.ContentCenterOptions.RefreshOutOfDateStandardParts = b.Value);
 
-            SetBoolOption(SectionAllParts, b => app.AssemblyOptions.SectionAllParts = b);
+            SetBoolOption(SectionAllParts, b => app.AssemblyOptions.SectionAllParts = b.Value);
 
             SetDefaultDrawingOption(DefaultDrawingFileType, l => app.DrawingOptions.DefaultDrawingFileType = (DefaultDrawingFileTypeEnum)l);
 
             EmptyExternalRuleDirectories();
             SetExternalRuleDirectories();
             SetProjectFiles();
+            SetShortcuts();
         }
 
         public void GetConfigurationFromInventor(Application application)
@@ -78,7 +80,7 @@ namespace InventorConfig
             iFeatureOptionsRootPath = app.iFeatureOptions.RootPath;
 
             GetCCAccessOption();
-   
+
             CCCustomFamilyAsStandard = app.ContentCenterOptions.CustomFamilyAsStandard;
             CCRefreshOutOfDateStandardParts = app.ContentCenterOptions.RefreshOutOfDateStandardParts;
             SectionAllParts = app.AssemblyOptions.SectionAllParts;
@@ -87,6 +89,7 @@ namespace InventorConfig
             CleanExternalRuleDirectories = false;
             GetExternalRuleDirectories();
             GetProjectFiles();
+            GetShortcuts();
         }
 
         internal object GetiLogicAddIn(Inventor.Application _app)
@@ -187,8 +190,11 @@ namespace InventorConfig
             return;
         }
 
-        private void SetBoolOption(bool prop, Action<bool> appOption)
+        private void SetBoolOption(bool? prop, Action<bool?> appOption)
         {
+            if (prop == null)
+                return;
+
             try
             {
                 appOption(prop);
@@ -317,7 +323,10 @@ namespace InventorConfig
 
         private void EmptyExternalRuleDirectories()
         {
-            if (CleanExternalRuleDirectories)
+            if (CleanExternalRuleDirectories == null)
+                return;
+
+            if (CleanExternalRuleDirectories.Value)
             {
                 string[] temp = { };
                 try
@@ -328,6 +337,38 @@ namespace InventorConfig
                 {
                     //"The iLogicAuto FileOptions.ExternalRuleDirectories could not be accessed. " + e);
                 }
+            }
+        }
+
+        private void SetShortcuts()
+        {
+            if (ControlShortcuts == null)
+                return;
+
+            var _controlDefs = app.CommandManager.ControlDefinitions;
+
+            foreach (var command in ControlShortcuts)
+            {
+                try
+                {
+                    _controlDefs[command.Key].OverrideShortcut = command.Value;
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        private void GetShortcuts()
+        {
+            ControlShortcuts = new Dictionary<string, string> { };
+            var _controlDefs = app.CommandManager.ControlDefinitions;
+
+            foreach (ControlDefinition _controlDef in _controlDefs)
+            {
+                if (_controlDef.IsShortcutOverridden)
+                    ControlShortcuts.Add(_controlDef.InternalName, _controlDef.OverrideShortcut);
             }
         }
     }

@@ -1,0 +1,8 @@
+{   "ConfigName" : "Shortcut Sample",
+   "ControlShortcuts": {
+      "AppCustomizeCmd": "cui",
+      "DrawingPartsListCmd": "pl",
+      "AppApplicationOptionsCmd": "op",
+      "AppDocumentSettingsCmd": "do"
+   }
+}
