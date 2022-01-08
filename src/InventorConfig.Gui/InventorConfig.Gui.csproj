@@ -26,4 +26,8 @@
     <ProjectReference Include="..\InventorConfig\InventorConfig.csproj" />
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="$(SolutionDir)packages\ILRepack.2.0.18\tools\ILRepack.exe /target:winexe /out:$(OutDir)inventor-config-gui.exe $(OutDir)inventor-config-gui.exe $(OutDir)InventorConfig.dll $(OutDir)Newtonsoft.Json.dll /log:$(OutDir)log.log" />
+  </Target>
+
 </Project>
