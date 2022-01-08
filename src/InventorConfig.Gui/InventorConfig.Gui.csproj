@@ -6,7 +6,7 @@
     <UseWPF>true</UseWPF>
     <Configurations>Debug;Release</Configurations>
     <AssemblyName>inventor-config-gui</AssemblyName>
-    <Version>2.1.0</Version>
+    <Version>2.2.0</Version>
     <ApplicationIcon>InventorConfigOrangeBorder.ico</ApplicationIcon>
   </PropertyGroup>
 

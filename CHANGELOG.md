@@ -1,10 +1,20 @@
-## [Unreleased Changes]
+<a name="2.2.0"></a>
+## [v2.2.0](https://github.com/jordanrobot/InventorConfig/releases/tag/v2.2.0) (2022-01-07)
+
 ### Added
 
 * Add icon.
+* GUI application (inventor-config-gui.exe)
+* Add ControlShortcuts to specify custom command shortcuts within inventor
+* Config keywords are no longer required.  I.e. you can include as many or as little config keywords and the command will work all the same; it will ignore missing keywords.
+* Empty array values are now ignored in configs.
+* Command Line: --path and --option switches now have short switches (-p and -o, respectively).
 
 ### Fixed
+
 - Added conventional commits keywords to gitversion configuration.
+- Improved user feedback in inventor-config-gui
+- Cleaned up nuget packages.
 
 <a name="2.1.0"></a>
 ## [2.1.0](https://github.com/jordanrobot/config-loader/compare/v2.0.0...2.1.0) (2021-02-13)
