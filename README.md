@@ -2,20 +2,30 @@
 
 This is a simple config tool for Autodesk Inventor to standardize Inventor options across users' computers. 
 
-It works by editing a select subset of Inventor Application Options from a JSON configuration file. The thought is that the administrator can configure a json file and deploy it with this tool to the users; ensuring their Inventor configs match the company standards.
+It works by editing a select subset of Inventor Application Options from a JSON configuration file. The thought is that the administrator can create a json configuration file and deploy the configuration to the users. This will ensuring their Inventor configs match the company standards.  You can also use it to back-up and quickly change some settings and command shortcuts.
+
+There are two versions, the gui tool (inventor-config-gui.exe), and a command-line tool (inventor-config.exe).
+
+![GUI Screenshot](https://github.com/jordanrobot/InventorConfig/blob/master/images/gui-screenshot.png)
 
 ## How to Run
 
 1. Download the binary from the Releases page, or download and build from source.
-2. Modify a default.json file, and place it in the same directory.
+2. Modify a default.json [configuration] file to suit your needs.
 
-There are three options after this:
 
-3. Double-click the inventor-config.exe file to run in place,
+Command-line tool:
+
+3. Double-click the inventor-config.exe file to run in place.  A default.json [configuration] file must be in the same directory as the inventor-config executable. Or
 4. Run in a command line with ```./inventor-config.exe``` with the various options shown below, or
 5. Copy the inventor-config.exe file into a directory in your PATH.  Then run from a command line with the command ```inventor-config```.
 
-## Detailed Usage
+GUI tool:
+
+6. Open the application, select a file, and click "Apply", or
+7. click on "Save New Config", select a new file name and location.
+
+## Detailed Command-Line Usage
 
 The basic usage will let you load a default json configuration file into Inventor.  The default configuration file needs to be named ```default.json```; this file should be located in current working directory (if using the command line).  To load the configuration using the command line, type the following command at a command line prompt (powershell, cmd, etc).
 
