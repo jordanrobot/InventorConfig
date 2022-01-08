@@ -2,7 +2,7 @@
 
 This is a simple config tool for Autodesk Inventor to standardize Inventor options across users' computers. 
 
-It works by editing a select subset of Inventor Application Options from a JSON configuration file. The thought is that the administrator can create a json configuration file and deploy the configuration to the users. This will ensuring their Inventor configs match the company standards.  You can also use it to back-up and quickly change some settings and command shortcuts.
+It works by editing a select subset of Inventor Application Options from a JSON configuration file. The thought is that the administrator can create a json configuration file and deploy the configuration to the users. This will ensure their Inventor configs match the company standards.  You can also use it to back-up and quickly change some settings and command shortcuts.
 
 There are two versions, the gui tool (inventor-config-gui.exe), and a command-line tool (inventor-config.exe).
 
