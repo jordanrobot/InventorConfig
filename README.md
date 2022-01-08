@@ -135,13 +135,13 @@ To verify a JSON configuration file's syntax is formatted correctly, issue the f
 |CleanExternalRuleDirectories|boolean|If this is set to true, the existing ExternalRuleDirectories will be deleted before applying the ones specified below.|
 |ExternalRuleDirectories|array|Directories to search for iLogic rules.|
 |ProjectFiles|array|Project files to load into Inventor's list of projects.|
-|ControlShortcuts|Dictionary<string, string>|Inventor command keyboard shortcuts.|
+|ControlShortcuts|Dictionary<string, string>|Inventor command keyboard shortcuts. The first value is the Inventor ControlDefinitions.InternalName, the second is the shortcut key(s).|
 
 ### Build
 
 InventorConfig (command-line) dependencies:
 
-* Autodesk Inventor installation (2021 tested)
+* Autodesk Inventor installation (2021 & 2022 tested)
 * Newtonsoft.Json (Nuget)
 * Microsoft.CSharp (Nuget)
 * CommandLineParser (Nuget)
@@ -156,3 +156,4 @@ To build, enter the following command in powershell:
 * `nuke compile`
 
 The inventor-config.exe will be placed in the `artifacts/` directory
+The inventor-config-gui.exe will be placed in the `artifacts/*/net48` directory
