@@ -19,7 +19,7 @@ namespace InventorConfig.Gui.View
 
         private void ApplyConfigButton_Click(object sender, RoutedEventArgs e)
         {
-            mainViewModel.ApplyConfigUIWrapper();
+            mainViewModel.ApplyConfigUIAsyncWrapper();
         }
 
         private void SaveConfigButton_Click(object sender, RoutedEventArgs e)

@@ -3,6 +3,7 @@ using Microsoft.Win32;
 using System;
 using System.Collections.ObjectModel;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -88,7 +89,17 @@ namespace InventorConfig.Gui.ViewModel
 
         #region Commands
 
-        public void ApplyConfigUIWrapper()
+        public async void ApplyConfigUIAsyncWrapper()
+        {
+            Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait;
+            StatusWorking("Accessing Inventor, please standby...");
+
+            await Task.Run(() => ApplyConfig());
+
+            Mouse.OverrideCursor = null;
+        }
+
+        private void ApplyConfig()
         {
             if (_selectedConfig.ApplyConfig())
             {
