@@ -7,6 +7,7 @@
     <Configurations>Debug;Release</Configurations>
     <AssemblyName>inventor-config-gui</AssemblyName>
     <Version>2.1.0</Version>
+    <ApplicationIcon>InventorConfigOrangeBorder.ico</ApplicationIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -16,6 +17,10 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <OutputPath>..\..\artifacts\Release\</OutputPath>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="InventorConfigOrangeBorder.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="ILRepack.Lib.MSBuild.Task" Version="2.0.18.2" />

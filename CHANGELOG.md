@@ -1,4 +1,7 @@
 ## [Unreleased Changes]
+### Added
+
+* Add icon.
 
 ### Fixed
 - Added conventional commits keywords to gitversion configuration.
